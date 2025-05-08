@@ -42,32 +42,38 @@ export default function Header() {
         <nav className="hidden md:flex items-center space-x-8">
           <Link
             href="/"
-            className="text-gray-800 hover:text-primary transition-colors duration-300 font-medium nav-link"
+            className="text-gray-800 hover:text-primary hover:font-semibold transform hover:scale-105 transition-all duration-300 font-medium nav-link"
           >
             Home
           </Link>
           <Link
             href="/about"
-            className="text-gray-800 hover:text-primary transition-colors duration-300 font-medium nav-link"
+            className="text-gray-800 hover:text-primary hover:font-semibold transform hover:scale-105 transition-all duration-300 font-medium nav-link"
           >
             About Us
           </Link>
           <Link
-            href="#courses"
-            className="text-gray-800 hover:text-primary transition-colors duration-300 font-medium nav-link"
+            href="/courses"
+            className="text-gray-800 hover:text-primary hover:font-semibold transform hover:scale-105 transition-all duration-300 font-medium nav-link"
           >
             Short Courses
           </Link>
           <Link
+            href="/board-members"
+            className="text-gray-800 hover:text-primary hover:font-semibold transform hover:scale-105 transition-all duration-300 font-medium nav-link"
+          >
+            IQCA Chair
+          </Link>
+          <Link
             href="#"
-            className="text-gray-800 hover:text-primary transition-colors duration-300 font-medium nav-link"
+            className="text-gray-800 hover:text-primary hover:font-semibold transform hover:scale-105 transition-all duration-300 font-medium nav-link"
           >
             Blog
           </Link>
         </nav>
         <div className="flex items-center space-x-4">
           <Link
-            href="#contact"
+            href="/#contact"
             className="hidden md:inline-block bg-primary text-white px-6 py-2.5 rounded-button font-medium transition-all duration-300 hover:bg-opacity-90 whitespace-nowrap"
           >
             Book Consultation
@@ -98,18 +104,25 @@ export default function Header() {
             Home
           </Link>
           <Link
-            href="#about"
+            href="/about"
             className="text-gray-800 hover:text-primary py-2 transition-colors duration-300 font-medium"
             onClick={() => setMobileMenuOpen(false)}
           >
             About Us
           </Link>
           <Link
-            href="#courses"
+            href="/courses"
             className="text-gray-800 hover:text-primary py-2 transition-colors duration-300 font-medium"
             onClick={() => setMobileMenuOpen(false)}
           >
             Short Courses
+          </Link>
+          <Link
+            href="/board-members"
+            className="text-gray-800 hover:text-primary py-2 transition-colors duration-300 font-medium"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            IQCA Chair
           </Link>
           <Link
             href="#"
@@ -119,7 +132,7 @@ export default function Header() {
             Blog
           </Link>
           <Link
-            href="#contact"
+            href="/#contact"
             className="bg-primary text-white px-6 py-2.5 rounded-button font-medium transition-all duration-300 hover:bg-opacity-90 text-center whitespace-nowrap"
             onClick={() => setMobileMenuOpen(false)}
           >

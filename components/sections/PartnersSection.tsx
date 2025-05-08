@@ -1,114 +1,80 @@
-export default function PartnersSection() {
+"use client";
+import { useState, useEffect, useRef } from "react";
+
+const CompanyCarousel = () => {
+  const [position, setPosition] = useState(0);
+  const carouselRef = useRef(null);
+
+  // Company logos data
+  const companies = [
+    { name: "IBM", icon: "○", color: "text-blue-800" },
+    { name: "HSBC", icon: "🏛", color: "text-blue-800" },
+    { name: "Accenture", icon: "📊", color: "text-blue-800" },
+    { name: "Microsoft", icon: "⊞", color: "text-blue-800" },
+    { name: "Amazon", icon: "ⓐ", color: "text-blue-800" },
+    // Duplicate the items to create a seamless loop
+    { name: "IBM", icon: "○", color: "text-blue-800" },
+    { name: "HSBC", icon: "🏛", color: "text-blue-800" },
+    { name: "Accenture", icon: "📊", color: "text-blue-800" },
+    { name: "Microsoft", icon: "⊞", color: "text-blue-800" },
+    { name: "Amazon", icon: "ⓐ", color: "text-blue-800" },
+    { name: "IBM", icon: "○", color: "text-blue-800" },
+    { name: "HSBC", icon: "🏛", color: "text-blue-800" },
+    { name: "Accenture", icon: "📊", color: "text-blue-800" },
+    { name: "Microsoft", icon: "⊞", color: "text-blue-800" },
+    { name: "Amazon", icon: "ⓐ", color: "text-blue-800" },
+  ];
+
+  // Animation effect
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPosition((prevPos) => {
+        // Reset position when we've scrolled far enough
+        if (prevPos <= -50) {
+          return 0;
+        }
+        return prevPos - 0.5;
+      });
+    }, 30);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center text-gray-900 mb-12" data-aos="fade-up">
-          Empowered by Our Trusted Collaborators
+    <div className="w-full overflow-hidden bg-gray-50 py-12">
+      <div className="mx-auto max-w-7xl px-4">
+        <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">
+          Our Trusted Partners
         </h2>
-        <div className="slider" data-aos="fade-up" data-aos-delay="100">
-          <div className="slide-track">
-            {/* First set of slides */}
-            <div className="slide">
-              <div className="bg-white p-6 rounded shadow-sm">
-                <div className="w-12 h-12 flex items-center justify-center text-primary mb-2">
-                  <i className="ri-building-line ri-2x"></i>
+
+        <div className="relative w-full overflow-hidden">
+          <div
+            className="flex gap-24 items-center space-x-16 whitespace-nowrap"
+            style={{ transform: `translateX(${position}%)` }}
+            ref={carouselRef}
+          >
+            {companies.map((company, index) => (
+              <div
+                key={index}
+                className="inline-flex flex-col items-center justify-center"
+              >
+                <div className="flex items-center justify-center w-16 h-16 bg-white rounded-full shadow-md mb-3">
+                  <span className={`text-3xl ${company.color}`}>
+                    {company.icon}
+                  </span>
                 </div>
-                <p className="font-medium">Accenture</p>
+                <p className="text-gray-700 font-medium">{company.name}</p>
               </div>
-            </div>
-            <div className="slide">
-              <div className="bg-white p-6 rounded shadow-sm">
-                <div className="w-12 h-12 flex items-center justify-center text-primary mb-2">
-                  <i className="ri-microsoft-line ri-2x"></i>
-                </div>
-                <p className="font-medium">Microsoft</p>
-              </div>
-            </div>
-            <div className="slide">
-              <div className="bg-white p-6 rounded shadow-sm">
-                <div className="w-12 h-12 flex items-center justify-center text-primary mb-2">
-                  <i className="ri-amazon-line ri-2x"></i>
-                </div>
-                <p className="font-medium">Amazon</p>
-              </div>
-            </div>
-            <div className="slide">
-              <div className="bg-white p-6 rounded shadow-sm">
-                <div className="w-12 h-12 flex items-center justify-center text-primary mb-2">
-                  <i className="ri-google-line ri-2x"></i>
-                </div>
-                <p className="font-medium">Google</p>
-              </div>
-            </div>
-            <div className="slide">
-              <div className="bg-white p-6 rounded shadow-sm">
-                <div className="w-12 h-12 flex items-center justify-center text-primary mb-2">
-                  <i className="ri-ibm-line ri-2x"></i>
-                </div>
-                <p className="font-medium">IBM</p>
-              </div>
-            </div>
-            <div className="slide">
-              <div className="bg-white p-6 rounded shadow-sm">
-                <div className="w-12 h-12 flex items-center justify-center text-primary mb-2">
-                  <i className="ri-bank-line ri-2x"></i>
-                </div>
-                <p className="font-medium">HSBC</p>
-              </div>
-            </div>
-            
-            {/* Duplicate for infinite scroll */}
-            <div className="slide">
-              <div className="bg-white p-6 rounded shadow-sm">
-                <div className="w-12 h-12 flex items-center justify-center text-primary mb-2">
-                  <i className="ri-building-line ri-2x"></i>
-                </div>
-                <p className="font-medium">Accenture</p>
-              </div>
-            </div>
-            <div className="slide">
-              <div className="bg-white p-6 rounded shadow-sm">
-                <div className="w-12 h-12 flex items-center justify-center text-primary mb-2">
-                  <i className="ri-microsoft-line ri-2x"></i>
-                </div>
-                <p className="font-medium">Microsoft</p>
-              </div>
-            </div>
-            <div className="slide">
-              <div className="bg-white p-6 rounded shadow-sm">
-                <div className="w-12 h-12 flex items-center justify-center text-primary mb-2">
-                  <i className="ri-amazon-line ri-2x"></i>
-                </div>
-                <p className="font-medium">Amazon</p>
-              </div>
-            </div>
-            <div className="slide">
-              <div className="bg-white p-6 rounded shadow-sm">
-                <div className="w-12 h-12 flex items-center justify-center text-primary mb-2">
-                  <i className="ri-google-line ri-2x"></i>
-                </div>
-                <p className="font-medium">Google</p>
-              </div>
-            </div>
-            <div className="slide">
-              <div className="bg-white p-6 rounded shadow-sm">
-                <div className="w-12 h-12 flex items-center justify-center text-primary mb-2">
-                  <i className="ri-ibm-line ri-2x"></i>
-                </div>
-                <p className="font-medium">IBM</p>
-              </div>
-            </div>
-            <div className="slide">
-              <div className="bg-white p-6 rounded shadow-sm">
-                <div className="w-12 h-12 flex items-center justify-center text-primary mb-2">
-                  <i className="ri-bank-line ri-2x"></i>
-                </div>
-                <p className="font-medium">HSBC</p>
-              </div>
-            </div>
+            ))}
           </div>
+
+          {/* Gradient overlay on edges */}
+          <div className="absolute top-0 left-0 h-full w-16 bg-gradient-to-r from-gray-50 to-transparent"></div>
+          <div className="absolute top-0 right-0 h-full w-16 bg-gradient-to-l from-gray-50 to-transparent"></div>
         </div>
       </div>
-    </section>
+    </div>
   );
-}
+};
+
+export default CompanyCarousel;
