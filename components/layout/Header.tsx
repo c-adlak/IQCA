@@ -32,7 +32,7 @@ export default function Header() {
       <div className="container mx-auto px-4 flex items-center justify-between">
         <Link href="/" className="inline-block">
           <Image
-            src="../images/a.png"
+            src="../images/IQCAlogo.png"
             alt="ABHA School Board"
             width={180}
             height={76}
