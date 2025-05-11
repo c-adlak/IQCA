@@ -1,6 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Facebook, Twitter, Instagram, Linkedin, Youtube } from "lucide-react";
+import {
+  Facebook,
+  Twitter,
+  Instagram,
+  Linkedin,
+  Youtube,
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+} from "lucide-react";
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white pt-16 pb-8">
@@ -16,27 +26,59 @@ export default function Footer() {
                 className="h-16 w-auto"
               />
             </Link>
+            <h2>
+              {" "}
+              International qualifications and certifications assessment board
+            </h2>
             <p className="text-gray-400 mb-6">
-              ABHA School Board is a premier CPD-accredited training provider
-              delivering expert-led courses in finance, health & safety, and
-              environmental safety.
+              Recognising and Certifying the global talent
             </p>
             <div className="flex space-x-4">
-              <div className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-white transition">
-                <Facebook className="w-5 h-5" />
-              </div>
-              <div className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-white transition">
-                <Twitter className="w-5 h-5" />
-              </div>
-              <div className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-white transition">
-                <Instagram className="w-5 h-5" />
-              </div>
-              <div className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-white transition">
-                <Linkedin className="w-5 h-5" />
-              </div>
-              <div className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-white transition">
-                <Youtube className="w-5 h-5" />
-              </div>
+              <a
+                href="https://www.facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-white transition">
+                  <Facebook className="w-5 h-5" />
+                </div>
+              </a>
+              <a
+                href="https://x.com/i/flow/login?redirect_after_login=%2Fiqcaboard"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-white transition">
+                  <Twitter className="w-5 h-5" />
+                </div>
+              </a>
+              <a
+                href="https://www.instagram.com/iqcaboard/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-white transition">
+                  <Instagram className="w-5 h-5" />
+                </div>
+              </a>
+              <a
+                href="https://www.linkedin.com/company/iqcaboard?trk=feed-detail_main-feed-card_feed-actor-name "
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-white transition">
+                  <Linkedin className="w-5 h-5" />
+                </div>
+              </a>
+              <a
+                href="https://www.youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-white transition">
+                  <Youtube className="w-5 h-5" />
+                </div>
+              </a>
             </div>
           </div>
 
@@ -53,7 +95,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="#about"
+                  href="/about"
                   className="text-gray-400 hover:text-white transition-colors duration-300 quick-link inline-block"
                 >
                   About Us
@@ -61,7 +103,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="#courses"
+                  href="/courses"
                   className="text-gray-400 hover:text-white transition-colors duration-300 quick-link inline-block"
                 >
                   Courses
@@ -77,7 +119,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="#contact"
+                  href="/#contact"
                   className="text-gray-400 hover:text-white transition-colors duration-300 quick-link inline-block"
                 >
                   Contact
@@ -137,27 +179,28 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start">
                 <div className="w-5 h-5 flex items-center justify-center text-primary mr-3 mt-1">
-                  <i className="ri-map-pin-line"></i>
+                  <MapPin className="w-5 h-5" />
                 </div>
                 <span className="text-gray-400">
-                  123 Business Avenue, London, UK
+                  Suite 16, Bell view court, Hanworth road, London, England, TW3
+                  3TT
                 </span>
               </li>
               <li className="flex items-start">
                 <div className="w-5 h-5 flex items-center justify-center text-primary mr-3 mt-1">
-                  <i className="ri-phone-line"></i>
+                  <Phone className="w-5 h-5" />
                 </div>
                 <span className="text-gray-400">+44 (0) 20 1234 5678</span>
               </li>
               <li className="flex items-start">
                 <div className="w-5 h-5 flex items-center justify-center text-primary mr-3 mt-1">
-                  <i className="ri-mail-line"></i>
+                  <Mail className="w-5 h-5" />
                 </div>
-                <span className="text-gray-400">info@abhaschool.com</span>
+                <span className="text-gray-400">Support@iqcaboard.co.uk</span>
               </li>
               <li className="flex items-start">
                 <div className="w-5 h-5 flex items-center justify-center text-primary mr-3 mt-1">
-                  <i className="ri-time-line"></i>
+                  <Clock className="w-5 h-5" />
                 </div>
                 <span className="text-gray-400">
                   Mon-Fri: 9:00 AM - 5:00 PM
@@ -167,7 +210,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-gray-800 text-center">
+        {/* <div className="pt-8 border-t border-gray-800 text-center">
           <div className="flex justify-center space-x-6 mb-6">
             <div className="w-10 h-10 flex items-center justify-center text-gray-400">
               <i className="ri-visa-fill ri-lg"></i>
@@ -193,7 +236,7 @@ export default function Footer() {
               Terms of Service
             </Link>
           </p>
-        </div>
+        </div> */}
       </div>
     </footer>
   );

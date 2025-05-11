@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -27,20 +28,42 @@ export default function ContactSection() {
     setFormData((prev) => ({ ...prev, [name]: checked }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic would go here
-    console.log("Form data submitted:", formData);
-    alert("Thank you for your inquiry! We will get back to you soon.");
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      interest: "",
-      message: "",
-      newsletter: false,
-    });
+
+    try {
+      const response = await fetch("https://formspree.io/f/mbloakeg", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          interest: formData.interest,
+          message: formData.message,
+          newsletter: formData.newsletter ? "Yes" : "No",
+        }),
+      });
+
+      if (response.ok) {
+        toast.success("Thank you for your inquiry!");
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          interest: "",
+          message: "",
+          newsletter: false,
+        });
+      } else {
+        toast.error("Failed to submit. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      toast.error("An error occurred. Please try again.");
+    }
   };
 
   return (
@@ -48,6 +71,7 @@ export default function ContactSection() {
       id="contact"
       className="py-20 bg-gradient-to-r from-primary/90 to-primary"
     >
+      <Toaster position="top-center" />
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between">
           <div className="md:w-1/2 mb-10 md:mb-0" data-aos="fade-right">
@@ -66,6 +90,12 @@ export default function ContactSection() {
                 className="bg-white text-primary px-8 py-3 rounded-button font-medium transition-all duration-300 hover:bg-opacity-90 whitespace-nowrap"
               >
                 Explore Courses
+              </Link>
+              <Link
+                href="#"
+                className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-button font-medium transition-all duration-300 hover:bg-white/10 whitespace-nowrap"
+              >
+                Book Consultation
               </Link>
             </div>
           </div>

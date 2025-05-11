@@ -15,7 +15,7 @@ export default function Home() {
       <AboutSection />
       <CoursesTab />
       <WhyChooseUsSection />
-      <LearningJourneySection />
+      {/* <LearningJourneySection /> */}
       <WhyLearningFromUsSection />
       <ContactSection />
     </>

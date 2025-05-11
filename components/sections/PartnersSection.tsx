@@ -1,43 +1,55 @@
 "use client";
+import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 
 const CompanyCarousel = () => {
-  const [position, setPosition] = useState(0);
-  const carouselRef = useRef(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [offset, setOffset] = useState(0);
 
-  // Company logos data
   const companies = [
-    { name: "IBM", icon: "○", color: "text-blue-800" },
-    { name: "HSBC", icon: "🏛", color: "text-blue-800" },
-    { name: "Accenture", icon: "📊", color: "text-blue-800" },
-    { name: "Microsoft", icon: "⊞", color: "text-blue-800" },
-    { name: "Amazon", icon: "ⓐ", color: "text-blue-800" },
-    // Duplicate the items to create a seamless loop
-    { name: "IBM", icon: "○", color: "text-blue-800" },
-    { name: "HSBC", icon: "🏛", color: "text-blue-800" },
-    { name: "Accenture", icon: "📊", color: "text-blue-800" },
-    { name: "Microsoft", icon: "⊞", color: "text-blue-800" },
-    { name: "Amazon", icon: "ⓐ", color: "text-blue-800" },
-    { name: "IBM", icon: "○", color: "text-blue-800" },
-    { name: "HSBC", icon: "🏛", color: "text-blue-800" },
-    { name: "Accenture", icon: "📊", color: "text-blue-800" },
-    { name: "Microsoft", icon: "⊞", color: "text-blue-800" },
-    { name: "Amazon", icon: "ⓐ", color: "text-blue-800" },
+    { img: "/images/aat.png" },
+    { img: "/images/acca.png" },
+    { img: "/images/cpd.png" },
+    { img: "/images/icaew.png" },
+    { img: "/images/ifa.png" },
+    { img: "/images/aatTraining.png" },
+    { img: "/images/aat.png" },
+    { img: "/images/acca.png" },
+    { img: "/images/cpd.png" },
+    { img: "/images/icaew.png" },
+    { img: "/images/ifa.png" },
+    { img: "/images/aatTraining.png" },
+    { img: "/images/aat.png" },
+    { img: "/images/acca.png" },
+    { img: "/images/cpd.png" },
+    { img: "/images/icaew.png" },
+    { img: "/images/ifa.png" },
+    { img: "/images/aatTraining.png" },
   ];
 
-  // Animation effect
   useEffect(() => {
-    const interval = setInterval(() => {
-      setPosition((prevPos) => {
-        // Reset position when we've scrolled far enough
-        if (prevPos <= -50) {
+    let frameId: number;
+
+    const scroll = () => {
+      setOffset((prev) => {
+        const container = carouselRef.current;
+        if (!container) return prev;
+
+        const scrollWidth = container.scrollWidth / 2;
+        const newOffset = prev + 1;
+
+        if (newOffset >= scrollWidth) {
           return 0;
         }
-        return prevPos - 0.5;
-      });
-    }, 30);
 
-    return () => clearInterval(interval);
+        return newOffset;
+      });
+
+      frameId = requestAnimationFrame(scroll);
+    };
+
+    frameId = requestAnimationFrame(scroll);
+    return () => cancelAnimationFrame(frameId);
   }, []);
 
   return (
@@ -46,31 +58,28 @@ const CompanyCarousel = () => {
         <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">
           Our Trusted Partners
         </h2>
-
         <div className="relative w-full overflow-hidden">
           <div
-            className="flex gap-24 items-center space-x-16 whitespace-nowrap"
-            style={{ transform: `translateX(${position}%)` }}
             ref={carouselRef}
+            className="flex gap-16"
+            style={{
+              transform: `translateX(-${offset}px)`,
+              transition: "transform 0.01s linear",
+              width: "max-content",
+            }}
           >
-            {companies.map((company, index) => (
-              <div
-                key={index}
-                className="inline-flex flex-col items-center justify-center"
-              >
-                <div className="flex items-center justify-center w-16 h-16 bg-white rounded-full shadow-md mb-3">
-                  <span className={`text-3xl ${company.color}`}>
-                    {company.icon}
-                  </span>
-                </div>
-                <p className="text-gray-700 font-medium">{company.name}</p>
+            {[...companies, ...companies].map((company, index) => (
+              <div key={index} className="flex items-center justify-center">
+                <Image
+                  src={company.img}
+                  alt="partner logo"
+                  width={150}
+                  height={150}
+                  className="object-contain"
+                />
               </div>
             ))}
           </div>
-
-          {/* Gradient overlay on edges */}
-          <div className="absolute top-0 left-0 h-full w-16 bg-gradient-to-r from-gray-50 to-transparent"></div>
-          <div className="absolute top-0 right-0 h-full w-16 bg-gradient-to-l from-gray-50 to-transparent"></div>
         </div>
       </div>
     </div>

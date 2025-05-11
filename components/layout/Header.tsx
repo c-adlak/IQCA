@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Menu, X } from "lucide-react";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -82,9 +83,7 @@ export default function Header() {
             className="md:hidden w-10 h-10 flex items-center justify-center text-gray-700"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            <i
-              className={`ri-${mobileMenuOpen ? "close" : "menu"}-line ri-lg`}
-            ></i>
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
