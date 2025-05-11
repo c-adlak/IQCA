@@ -65,12 +65,6 @@ export default function Header() {
           >
             IQCA Chair
           </Link>
-          <Link
-            href="#"
-            className="text-gray-800 hover:text-primary hover:font-semibold transform hover:scale-105 transition-all duration-300 font-medium nav-link"
-          >
-            Blog
-          </Link>
         </nav>
         <div className="flex items-center space-x-4">
           <Link
@@ -122,13 +116,6 @@ export default function Header() {
             onClick={() => setMobileMenuOpen(false)}
           >
             IQCA Chair
-          </Link>
-          <Link
-            href="#"
-            className="text-gray-800 hover:text-primary py-2 transition-colors duration-300 font-medium"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            Blog
           </Link>
           <Link
             href="/#contact"
