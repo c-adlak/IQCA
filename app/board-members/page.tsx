@@ -22,7 +22,91 @@ type BoardMemberCardProps = {
 export default function Page() {
   const boardMembers: BoardMember[] = [
     {
-      id: 1,
+      id: 0,
+      name: "Roma Arora",
+      title: "Country chair For Strategic partnerships and International Education Development",
+      bio: "Roma is a skilled office administrator with expertise in managing day-to-day operations, supporting staff, and ensuring seamless workflow.",
+      imageUrl: "/images/board-members/romaArora.jpg",
+      region: "UK & Europe",
+      objectPosition: "0% 10%",
+      about: {
+        "Key Roles": [
+          "Office Administrator: Oversees administrative tasks, maintains organization, and provides support to the team.",
+          "Task Management: Prioritizes and manages tasks efficiently to meet deadlines and achieve office goals.",
+        ],
+        Expertise: [
+          "Office Management & Operations",
+          "Administrative Support",
+          "Time Management & Organization",
+          "Communication & Team Collaboration",
+        ],
+      },
+    },
+    {
+      "id": 1,
+      "name": "Nufail Naleem",
+      "title": "Chartered Global Management & Chartered Accountant",
+      "bio": "Nufail Naleem is a seasoned business consultant and strategic development expert with 13 years of experience, specializing in Fortune 500 companies, LSE, and SMEs. He is also an academic and corporate trainer who has mentored over 5000 students.",
+      "imageUrl": "/images/board-members/NufailNaleem.jpeg",
+      "region": "Asia",
+      objectPosition: "0% 10%",
+      "about": {
+        "Key Roles": [
+          "Business Consultant: Advises Fortune 500, LSE-listed, and SME companies on strategy and operations.",
+          "Academic & Corporate Trainer: Trained over 5000 students in business management and strategic planning.",
+          "Change Management Specialist: Leads initiatives involving AI adoption and organizational transformation."
+        ],
+        "Expertise": [
+          "Business Consulting & Strategic Development",
+          "Change Management & AI Integration",
+          "Corporate Training & Mentorship",
+          "Financial Analysis & Planning"
+        ]
+      }
+    },
+    {
+      id: 2,
+      name: "David Morchiladze",
+      title: "Country Chair | International Education Consultant, United Kingdom | Strategic Partner, IQCA Board",
+      bio: "David is a seasoned leader in international education with expertise in quality assurance, global partnerships, and strategic planning. He serves as the Country Chair, International Education Consultant, and Strategic Partner on the IQCA Board, driving initiatives that elevate educational standards worldwide.",
+      about: {
+        "Key Roles": [
+          "Country Chair: Represents organizational interests at the national level, fostering partnerships and driving policy changes to align with global education standards.",
+          "International Education Consultant: Advises institutions on global expansion and quality improvement, offering insights on market trends and best practices.",
+          "Strategic Partner, IQCA Board: Collaborates on long-term strategy, global partnerships, and accreditation processes to enhance educational quality across borders.",
+        ],
+        "Key Strengths": [
+          "Global Strategy & Leadership: Expertise in navigating international education systems and leading impactful initiatives.",
+          "Quality Assurance: Guiding institutions through accreditation and quality improvement efforts.",
+          "Partnership Development: Building strategic alliances to expand educational reach and impact.",
+        ],
+      },
+      imageUrl: "/images/board-members/DavidMorchiladze.jpg",
+      region: "UK",
+      objectPosition: "0% 50%",
+    },
+    {
+      id: 3,
+      name: "Rudaba Jafry",
+      title: "Country Chair for International Business & Education Consultation | Board Member of IQCA Board, UK",
+      bio: "Rudaba Jafry is a dynamic leader in international business and education consultation. As Country Chair and Board Member of the IQCA Board, UK, she champions global collaboration, strategic growth, and quality assurance in education.",
+      about: {
+        "Key Roles": [
+          "Country Chair: Leads international education and business initiatives, supporting institutions in global outreach and development.",
+          "Board Member of IQCA Board: Contributes to governance, accreditation, and strategic planning to enhance educational quality worldwide.",
+        ],
+        "Expertise": [
+          "Global Education & Business Strategy",
+          "Quality Assurance & Accreditation",
+          "Leadership & International Collaboration",
+        ],
+      },
+      imageUrl: "/images/board-members/RudabaJafry.jpg",
+      region: "Europe",
+      objectPosition: "48% 25%",
+    },
+    {
+      id: 4,
       name: "Jonathan Wilson",
       title: "Chief Executive Officer",
       bio: "With over 20 years of experience in professional education and corporate training, Jonathan leads our strategic vision and organizational growth.",
@@ -41,7 +125,7 @@ export default function Page() {
       },
     },
     {
-      id: 2,
+      id: 5,
       name: "Sarah Chen",
       title: "Chief Operations Officer",
       bio: "Sarah brings extensive expertise in operational excellence and educational program development with a focus on health and safety training.",
@@ -60,7 +144,7 @@ export default function Page() {
       },
     },
     {
-      id: 3,
+      id: 6,
       name: "Dr. Robert Thompson",
       title: "Chief Academic Officer",
       bio: "A former university dean with a PhD in Educational Leadership, Robert ensures our courses meet the highest academic and industry standards.",
@@ -79,7 +163,7 @@ export default function Page() {
       },
     },
     {
-      id: 4,
+      id: 7,
       name: "Michelle Patel",
       title: "Director of Finance",
       bio: "Michelle's background in financial management and educational institutions helps drive our sustainable growth and financial health.",
@@ -94,7 +178,7 @@ export default function Page() {
       },
     },
     {
-      id: 5,
+      id: 8,
       name: "David Lawson",
       title: "Director of Environmental Programs",
       bio: "With expertise in environmental safety and compliance, David leads our growing portfolio of environmental certification programs.",
@@ -113,7 +197,7 @@ export default function Page() {
       },
     },
     {
-      id: 6,
+      id: 9,
       name: "Dr. Emily Richards",
       title: "Director of Health & Safety",
       bio: "Emily combines her medical background with extensive training experience to develop our industry-leading health and safety curriculum.",
@@ -132,7 +216,7 @@ export default function Page() {
       },
     },
     {
-      id: 7,
+      id: 10,
       name: "Kwame Osei",
       title: "Director of African Operations",
       bio: "With a decade of experience in educational development across African nations, Kwame leads our expanding initiatives throughout the continent.",
@@ -151,7 +235,7 @@ export default function Page() {
       },
     },
     {
-      id: 8,
+      id: 11,
       name: "Maria Rodriguez",
       title: "Caribbean Regional Manager",
       bio: "Maria specializes in developing safety training programs tailored to the specific needs of Caribbean industries and communities.",
@@ -209,11 +293,10 @@ export default function Page() {
               <button
                 key={region}
                 onClick={() => setActiveRegion(region)}
-                className={`w-full px-6 py-3 mb-6 font-medium text-lg rounded-lg transition-colors duration-200 ${
-                  activeRegion === region
-                    ? "bg-blue-600 text-white"
-                    : "bg-primary text-white hover:bg-blue-500"
-                }`}
+                className={`w-full px-6 py-3 mb-6 font-medium text-lg rounded-lg transition-colors duration-200 ${activeRegion === region
+                  ? "bg-blue-600 text-white"
+                  : "bg-primary text-white hover:bg-blue-500"
+                  }`}
               >
                 {region}
               </button>
@@ -264,6 +347,9 @@ const BoardMemberCard = ({ member, onClick }: BoardMemberCardProps) => (
         src={member.imageUrl}
         alt={member.name}
         className="w-full h-full object-cover"
+        style={{
+          objectPosition: member.objectPosition || "center",
+        }}
       />
     </div>
     <div className="p-6">
