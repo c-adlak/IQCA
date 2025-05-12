@@ -111,14 +111,6 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="#"
-                  className="text-gray-400 hover:text-white transition-colors duration-300 quick-link inline-block"
-                >
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/#contact"
                   className="text-gray-400 hover:text-white transition-colors duration-300 quick-link inline-block"
                 >

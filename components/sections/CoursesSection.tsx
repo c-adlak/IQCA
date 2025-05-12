@@ -11,6 +11,8 @@ const CoursesTab = () => {
     { id: "finance", name: "Finance" },
     { id: "health", name: "Health & Safety" },
     { id: "environmental", name: "Environmental Safety" },
+    { id: "it", name: "IT" },
+    { id: "engineering", name: "Engineering" },
   ];
 
   const courses = [
@@ -84,7 +86,38 @@ const CoursesTab = () => {
       image:
         "https://images.pexels.com/photos/4386373/pexels-photo-4386373.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     },
+    {
+      id: 8,
+      title: "Quantity Surveyor with BIM Integration",
+      description:
+        "This CPD-accredited course bridges traditional quantity surveying with modern BIM practices using Autodesk Revit and Navisworks for accurate project estimation and management.",
+      category: "engineering",
+      duration: "6-8 Weeks",
+      image:
+        "https://images.pexels.com/photos/4254890/pexels-photo-4254890.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", // placeholder, replace if needed
+    },
+    {
+      id: 9,
+      title: "Solar Energy Systems for Civil Engineers",
+      description:
+        "Hands-on CPD-accredited training for civil engineers in solar PV systems, including installation, grid integration, and NABCEP-aligned modules for green building readiness.",
+      category: "engineering",
+      duration: "6-8 Weeks",
+      image:
+        "https://images.pexels.com/photos/4254168/pexels-photo-4254168.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", // placeholder, replace if needed
+    },
+    {
+      id: 10,
+      title: "Cyber Security Fundamentals",
+      description:
+        "CPD-accredited course on network security, ethical hacking, threat analysis, and regulatory compliance to prepare IT professionals to combat modern cyber threats.",
+      category: "it",
+      duration: "8 Weeks",
+      image:
+        "https://images.pexels.com/photos/5380658/pexels-photo-5380658.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", // placeholder, replace if needed
+    },
   ];
+  
 
   const filteredCourses = courses.filter(
     (course) => activeFilter === "all" || course.category === activeFilter

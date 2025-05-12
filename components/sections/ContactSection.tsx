@@ -91,12 +91,6 @@ export default function ContactSection() {
               >
                 Explore Courses
               </Link>
-              <Link
-                href="#"
-                className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-button font-medium transition-all duration-300 hover:bg-white/10 whitespace-nowrap"
-              >
-                Book Consultation
-              </Link>
             </div>
           </div>
           <div
@@ -184,6 +178,8 @@ export default function ContactSection() {
                     <option value="finance">Finance</option>
                     <option value="health">Health & Safety</option>
                     <option value="environmental">Environmental Safety</option>
+                    <option value="environmental">Engineering</option>
+                    <option value="environmental">IT</option>
                     <option value="other">Other</option>
                   </select>
                   <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-gray-500">
