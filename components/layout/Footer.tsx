@@ -173,16 +173,21 @@ export default function Footer() {
                 <div className="w-5 h-5 flex items-center justify-center text-primary mr-3 mt-1">
                   <MapPin className="w-5 h-5" />
                 </div>
-                <span className="text-gray-400">
-                  Suite 16, Bell view court, Hanworth road, London, England, TW3
-                  3TT
-                </span>
+                <div className="flex flex-col">
+                  <span className="text-gray-400 mb-4">
+                    <strong className="text-gray-300">West London</strong> Suite 16, Bell view court, Hanworth road, London, England, TW3
+                    3TT
+                  </span>
+                  <span className="text-gray-400">
+                    <strong className="text-gray-300">Central London</strong> 167-169, Great Portland Street, London, United Kingdom, W1W 5PF
+                  </span>
+                </div>
               </li>
               <li className="flex items-start">
                 <div className="w-5 h-5 flex items-center justify-center text-primary mr-3 mt-1">
                   <Phone className="w-5 h-5" />
                 </div>
-                <span className="text-gray-400">+44 (0) 20 1234 5678</span>
+                <span className="text-gray-400">0204111799</span>
               </li>
               <li className="flex items-start">
                 <div className="w-5 h-5 flex items-center justify-center text-primary mr-3 mt-1">
