@@ -45,7 +45,7 @@ export default function Page() {
     {
       "id": 1,
       "name": "Nufail Naleem",
-      "title": "Chartered Global Management & Chartered Accountant",
+      "title": "Country chair, Administrative management and business network",
       "bio": "Nufail Naleem is a seasoned business consultant and strategic development expert with 13 years of experience, specializing in Fortune 500 companies, LSE, and SMEs. He is also an academic and corporate trainer who has mentored over 5000 students.",
       "imageUrl": "/images/board-members/NufailNaleem.jpeg",
       "region": "Asia",
