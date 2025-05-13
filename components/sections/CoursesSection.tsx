@@ -1,10 +1,44 @@
 "use client";
 import React, { useState } from "react";
 import { Clock, Award, ArrowRight } from "lucide-react";
+import toast, { Toaster } from "react-hot-toast";
+
+type Course = {
+  id: number;
+  title: string;
+  description: string;
+  category: string;
+  duration: string;
+  image: string;
+};
 
 const CoursesTab = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [showAllCourses, setShowAllCourses] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+    const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
+    const [formData, setFormData] = useState({
+      name: '',
+      email: '',
+      phone: '',
+      interest: '',
+      message: '',
+      newsletter: false,
+    });
+  
+    // Whenever modal opens with new course, prefill interest
+    React.useEffect(() => {
+      if (selectedCourse) {
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          interest: selectedCourse.title,
+          message: '',
+          newsletter: false,
+        });
+      }
+    }, [selectedCourse]);
 
   const filters = [
     { id: "all", name: "All Courses" },
@@ -128,6 +162,56 @@ const CoursesTab = () => {
       ? filteredCourses.slice(0, 6)
       : filteredCourses;
 
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: checked }));
+  };
+
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+     try {
+      const response = await fetch("https://formspree.io/f/mbloakeg", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          interest: formData.interest,
+          message: formData.message,
+          newsletter: formData.newsletter ? "Yes" : "No",
+        }),
+      });
+
+      if (response.ok) {
+        toast.success("Thank you for your inquiry!");
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          interest: "",
+          message: "",
+          newsletter: false,
+        });
+      } else {
+        toast.error("Failed to submit. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      toast.error("An error occurred. Please try again.");
+    }
+  };
+
+
   return (
     <section id="courses" className="py-20 pt-48 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -192,12 +276,15 @@ const CoursesTab = () => {
                     <span>CPD Certified</span>
                   </div>
                 </div>
-                <a
-                  href="#"
+               <button
+                  onClick={() => {
+                    setSelectedCourse(course);
+                    setShowModal(true);
+                  }}
                   className="inline-block w-full bg-white border border-primary text-primary text-center px-4 py-2 rounded-md font-medium transition-all duration-300 hover:bg-primary/5"
                 >
                   Learn More
-                </a>
+                </button>
               </div>
             </div>
           ))}
@@ -231,6 +318,129 @@ const CoursesTab = () => {
           </div>
         )}
       </div>
+
+
+      {showModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+          <div className="bg-white p-8 rounded-lg shadow-lg max-w-2xl w-full relative">
+            <button
+              onClick={() => setShowModal(false)}
+              className="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
+            >
+              &times;
+            </button>
+            <h3 className="text-xl font-bold mb-4 text-gray-900">
+              Interested in: {selectedCourse?.title}
+            </h3>
+
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="name" className="block font-medium text-sm text-gray-700">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block font-medium text-sm text-gray-700">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="phone" className="block font-medium text-sm text-gray-700">
+                    Phone
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="interest" className="block font-medium text-sm text-gray-700">
+                    Area of Interest
+                  </label>
+                  <select
+                    name="interest"
+                    value={formData.interest}
+                    onChange={handleChange}
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                    required
+                  >
+                    <option value="">Select an option</option>
+                    <option value="Web Development">Finance</option>
+                    <option value="Data Science">Health and Safety</option>
+                    <option value="UI/UX Design">Environmental Safety</option>
+                    <option value="Cybersecurity">Engineering</option>
+                    <option value="Cybersecurity">IT</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block font-medium text-sm text-gray-700">
+                  Your Message
+                </label>
+                <textarea
+                  name="message"
+                  rows={3}
+                  value={formData.message}
+                  onChange={handleChange}
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                />
+              </div>
+
+              <div className="flex items-center">
+                <input
+                  id="newsletter"
+                  name="newsletter"
+                  type="checkbox"
+                  checked={formData.newsletter}
+                  onChange={handleCheckboxChange}
+                  className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+                />
+                <label htmlFor="newsletter" className="ml-2 block text-sm text-gray-700">
+                  Subscribe to our newsletter
+                </label>
+              </div>
+
+              <div>
+                <button
+                  type="submit"
+                  className="w-full bg-primary text-white font-medium py-2 px-4 rounded-md hover:bg-primary-dark transition-colors"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      )}
+
     </section>
   );
 };
