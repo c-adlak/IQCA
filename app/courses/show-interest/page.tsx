@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
+import CoursePage from "../page";
 type Course = {
   id: number;
   title: string;
@@ -20,20 +21,6 @@ export default function ContactForCourse() {
     message: "",
     newsletter: false,
   });
-  const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
-  useEffect(() => {
-    if (selectedCourse) {
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        interest: selectedCourse.title,
-        message: "",
-        newsletter: false,
-      });
-    }
-  }, [selectedCourse]);
-
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
@@ -304,6 +291,7 @@ export default function ContactForCourse() {
           </div>
         </div>
       </div>
+      <CoursePage />
     </div>
   );
 }

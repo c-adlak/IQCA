@@ -16,8 +16,6 @@ type Course = {
 const CoursesTab = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [showAllCourses, setShowAllCourses] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -26,20 +24,6 @@ const CoursesTab = () => {
     message: "",
     newsletter: false,
   });
-
-  // Whenever modal opens with new course, prefill interest
-  React.useEffect(() => {
-    if (selectedCourse) {
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        interest: selectedCourse.title,
-        message: "",
-        newsletter: false,
-      });
-    }
-  }, [selectedCourse]);
 
   const filters = [
     { id: "all", name: "All Courses" },

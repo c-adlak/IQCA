@@ -12,16 +12,16 @@ type Course = {
   image: string;
 };
 
-const page = () => {
+const CoursePage = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [showModal, setShowModal] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    interest: '',
-    message: '',
+    name: "",
+    email: "",
+    phone: "",
+    interest: "",
+    message: "",
     newsletter: false,
   });
 
@@ -29,11 +29,11 @@ const page = () => {
   React.useEffect(() => {
     if (selectedCourse) {
       setFormData({
-        name: '',
-        email: '',
-        phone: '',
+        name: "",
+        email: "",
+        phone: "",
         interest: selectedCourse.title,
-        message: '',
+        message: "",
         newsletter: false,
       });
     }
@@ -151,21 +151,23 @@ const page = () => {
     },
   ];
 
-
   const filteredCourses =
     activeFilter === "all"
       ? courses.slice(0, 6)
       : courses
-        .filter((course) => course.category === activeFilter)
-        .slice(0, 6);
+          .filter((course) => course.category === activeFilter)
+          .slice(0, 6);
 
   const hasMoreCourses =
     activeFilter === "all"
       ? courses.length > 6
       : courses.filter((course) => course.category === activeFilter).length > 6;
 
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -175,10 +177,9 @@ const page = () => {
     setFormData((prev) => ({ ...prev, [name]: checked }));
   };
 
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-     try {
+    try {
       const response = await fetch("https://formspree.io/f/mbloakeg", {
         method: "POST",
         headers: {
@@ -236,10 +237,11 @@ const page = () => {
             <button
               key={filter.id}
               onClick={() => setActiveFilter(filter.id)}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap ${activeFilter === filter.id
+              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap ${
+                activeFilter === filter.id
                   ? "bg-primary text-white"
                   : "bg-white text-gray-700 hover:bg-gray-100"
-                }`}
+              }`}
             >
               {filter.name}
             </button>
@@ -289,7 +291,6 @@ const page = () => {
                 >
                   Learn More
                 </button>
-
               </div>
             </div>
           ))}
@@ -324,7 +325,10 @@ const page = () => {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="name" className="block font-medium text-sm text-gray-700">
+                  <label
+                    htmlFor="name"
+                    className="block font-medium text-sm text-gray-700"
+                  >
                     Name
                   </label>
                   <input
@@ -338,7 +342,10 @@ const page = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block font-medium text-sm text-gray-700">
+                  <label
+                    htmlFor="email"
+                    className="block font-medium text-sm text-gray-700"
+                  >
                     Email
                   </label>
                   <input
@@ -354,7 +361,10 @@ const page = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="phone" className="block font-medium text-sm text-gray-700">
+                  <label
+                    htmlFor="phone"
+                    className="block font-medium text-sm text-gray-700"
+                  >
                     Phone
                   </label>
                   <input
@@ -367,7 +377,10 @@ const page = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="interest" className="block font-medium text-sm text-gray-700">
+                  <label
+                    htmlFor="interest"
+                    className="block font-medium text-sm text-gray-700"
+                  >
                     Area of Interest
                   </label>
                   <select
@@ -389,7 +402,10 @@ const page = () => {
               </div>
 
               <div>
-                <label htmlFor="message" className="block font-medium text-sm text-gray-700">
+                <label
+                  htmlFor="message"
+                  className="block font-medium text-sm text-gray-700"
+                >
                   Your Message
                 </label>
                 <textarea
@@ -410,7 +426,10 @@ const page = () => {
                   onChange={handleCheckboxChange}
                   className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
                 />
-                <label htmlFor="newsletter" className="ml-2 block text-sm text-gray-700">
+                <label
+                  htmlFor="newsletter"
+                  className="ml-2 block text-sm text-gray-700"
+                >
                   Subscribe to our newsletter
                 </label>
               </div>
@@ -425,11 +444,9 @@ const page = () => {
               </div>
             </form>
           </div>
-
         </div>
       )}
-
     </section>
   );
 };
-export default page;
+export default CoursePage;
