@@ -279,7 +279,7 @@ const CoursesTab = () => {
                 </div>
                 <Link
                   className="inline-block w-full bg-white border border-primary text-primary text-center px-4 py-2 rounded-md font-medium transition-all duration-300 hover:bg-primary/5"
-                  href="/courses/dummy"
+                  href="/courses/show-interest"
                 >
                   Learn More
                 </Link>
