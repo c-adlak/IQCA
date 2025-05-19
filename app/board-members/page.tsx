@@ -42,28 +42,28 @@ export default function Page() {
         ],
       },
     },
-    {
-      "id": 1,
-      "name": "Nufail Naleem",
-      "title": "Country chair, Administrative management and business network",
-      "bio": "Nufail Naleem is a seasoned business consultant and strategic development expert with 13 years of experience, specializing in Fortune 500 companies, LSE, and SMEs. He is also an academic and corporate trainer who has mentored over 5000 students.",
-      "imageUrl": "/images/board-members/NufailNaleem.jpeg",
-      "region": "Asia",
-      objectPosition: "0% 10%",
-      "about": {
-        "Key Roles": [
-          "Business Consultant: Advises Fortune 500, LSE-listed, and SME companies on strategy and operations.",
-          "Academic & Corporate Trainer: Trained over 5000 students in business management and strategic planning.",
-          "Change Management Specialist: Leads initiatives involving AI adoption and organizational transformation."
-        ],
-        "Expertise": [
-          "Business Consulting & Strategic Development",
-          "Change Management & AI Integration",
-          "Corporate Training & Mentorship",
-          "Financial Analysis & Planning"
-        ]
-      }
-    },
+    // {
+    //   "id": 1,
+    //   "name": "Nufail Naleem",
+    //   "title": "Country chair, Administrative management and business network",
+    //   "bio": "Nufail Naleem is a seasoned business consultant and strategic development expert with 13 years of experience, specializing in Fortune 500 companies, LSE, and SMEs. He is also an academic and corporate trainer who has mentored over 5000 students.",
+    //   "imageUrl": "/images/board-members/NufailNaleem.jpeg",
+    //   "region": "Asia",
+    //   objectPosition: "0% 10%",
+    //   "about": {
+    //     "Key Roles": [
+    //       "Business Consultant: Advises Fortune 500, LSE-listed, and SME companies on strategy and operations.",
+    //       "Academic & Corporate Trainer: Trained over 5000 students in business management and strategic planning.",
+    //       "Change Management Specialist: Leads initiatives involving AI adoption and organizational transformation."
+    //     ],
+    //     "Expertise": [
+    //       "Business Consulting & Strategic Development",
+    //       "Change Management & AI Integration",
+    //       "Corporate Training & Mentorship",
+    //       "Financial Analysis & Planning"
+    //     ]
+    //   }
+    // },
     {
       id: 2,
       name: "David Morchiladze",
