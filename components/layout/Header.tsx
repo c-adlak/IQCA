@@ -63,7 +63,7 @@ export default function Header() {
             href="/board-members"
             className="text-gray-800 hover:text-primary hover:font-semibold transform hover:scale-105 transition-all duration-300 font-medium nav-link"
           >
-            IQCA Chair
+            IQCA Members
           </Link>
         </nav>
         <div className="flex items-center space-x-4">
@@ -115,7 +115,7 @@ export default function Header() {
             className="text-gray-800 hover:text-primary py-2 transition-colors duration-300 font-medium"
             onClick={() => setMobileMenuOpen(false)}
           >
-            IQCA Chair
+            IQCA Members
           </Link>
           <Link
             href="/#contact"
