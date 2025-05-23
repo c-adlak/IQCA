@@ -60,6 +60,12 @@ export default function Header() {
             Short Courses
           </Link>
           <Link
+            href="/events"
+            className="text-gray-800 hover:text-primary hover:font-semibold transform hover:scale-105 transition-all duration-300 font-medium nav-link"
+          >
+            Events
+          </Link>
+          <Link
             href="/board-members"
             className="text-gray-800 hover:text-primary hover:font-semibold transform hover:scale-105 transition-all duration-300 font-medium nav-link"
           >

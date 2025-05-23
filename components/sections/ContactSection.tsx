@@ -32,7 +32,7 @@ export default function ContactSection() {
     e.preventDefault();
 
     try {
-      const response = await fetch("https://formspree.io/f/mbloakeg", {
+      const response = await fetch("https://formspree.io/f/meogwwkw", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
