@@ -17,7 +17,7 @@ const Page = () => {
   const getBoardMembers = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/boardMembers/get-board-members",
+        "https://iqca-backend.onrender.com/boardMembers/get-board-members",
         {
           method: "GET",
           headers: {
@@ -38,7 +38,7 @@ const Page = () => {
   const handleAccept = async (id: string) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/boardMembers/accept-request/${id}`,
+        `https://iqca-backend.onrender.com/boardMembers/accept-request/${id}`,
         {
           method: "PATCH",
           headers: {
@@ -61,7 +61,7 @@ const Page = () => {
   const handleReject = async (id: string) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/boardMembers/reject-request/${id}`,
+        `https://iqca-backend.onrender.com/boardMembers/reject-request/${id}`,
         {
           method: "PATCH",
           headers: {
