@@ -1,56 +1,53 @@
 import React, { useState } from "react";
 
-const regions = ["North", "South", "East", "West", "Central"];
-
 const MemberInquiryForm: React.FC = () => {
   const [formData, setFormData] = useState({
     name: "",
     designation: "",
     about: "",
-    photo: "",
+    photo: null as File | null,
     keyRolesAndExpertise: "",
     region: "",
   });
 
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const data = new FormData();
-    data.append("name", formData.name);
-    data.append("designation", formData.designation);
-    data.append("about", formData.about);
-    data.append("keyRolesAndExpertise", formData.keyRolesAndExpertise);
-    data.append("region", formData.region);
-    if ((e.target as any).photo.files[0]) {
-      data.append("photo", (e.target as any).photo.files[0]);
-    }
-
-    try {
-      const response = await fetch(
-        "https://iqca-backend.onrender.com/boardMembers/board-member-inquiry",
-        {
-          method: "POST",
-          body: data,
-        }
-      );
-
-      if (!response.ok) throw new Error("Network response was not ok");
-      const result = await response.json();
-      alert("Inquiry submitted successfully!");
-    } catch (error) {
-      console.error("Upload error:", error);
-      alert("Failed to submit the form.");
+    const { name, value, files } = e.target as HTMLInputElement;
+    if (name === "photo" && files?.length) {
+      setFormData((prev) => ({ ...prev, photo: files[0] }));
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
     }
   };
+
+ const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  try {
+    const response = await fetch("https://formspree.io/f/mzzrlvye", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: formData.name,
+        designation: formData.designation,
+        about: formData.about,
+        keyRolesAndExpertise: formData.keyRolesAndExpertise,
+        region: formData.region,
+        // Omitting the `photo` field (can't send files via JSON)
+      }),
+    });
+
+    if (!response.ok) throw new Error("Network response was not ok");
+    alert("Inquiry submitted successfully!");
+  } catch (error) {
+    console.error("Form submission error:", error);
+    alert("Failed to submit the form.");
+  }
+};
 
   return (
     <div className="w-full max-w-2xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mt-10">
@@ -84,13 +81,14 @@ const MemberInquiryForm: React.FC = () => {
           onChange={handleChange}
           className="w-full p-3 text-sm rounded-lg border border-gray-300 bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
         />
-        <input
+        {/* <input
           type="file"
           name="photo"
           accept="image/*"
           required
+          onChange={handleChange}
           className="w-full p-3 text-sm rounded-lg border border-gray-300 bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-        />
+        /> */}
         <input
           type="text"
           name="keyRolesAndExpertise"
