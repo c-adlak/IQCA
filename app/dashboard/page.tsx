@@ -54,7 +54,7 @@ const Page = () => {
       }
     } catch (err) {
       console.error("Accept error:", err);
-      alert("An error occurred while accepting the request.");
+      toast.error("An error occurred while accepting the request.");
     }
   };
 
@@ -70,14 +70,14 @@ const Page = () => {
         }
       );
       if (response.ok) {
-        alert("Request rejected successfully!");
+        toast.success("Request rejected successfully!");
         getBoardMembers();
       } else {
-        alert("Failed to reject the request.");
+        toast.error("Failed to reject the request.");
       }
     } catch (err) {
       console.error("Reject error:", err);
-      alert("An error occurred while rejecting the request.");
+      toast.error("An error occurred while rejecting the request.");
     }
   };
 

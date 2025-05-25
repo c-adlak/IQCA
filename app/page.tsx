@@ -5,11 +5,9 @@ import WhyLearningFromUsSection from "@/components/sections/WhyLearningFromUsSec
 import CoursesTab from "@/components/sections/CoursesSection";
 import ContactSection from "@/components/sections/ContactSection";
 import CompanyCarousel from "@/components/sections/PartnersSection";
-import Temp from "./Temp";
 export default function Home() {
   return (
     <>
-      <Temp />
       <HeroSection />
       <CompanyCarousel />
       <AboutSection />
