@@ -32,18 +32,21 @@ export default function ContactSection() {
     e.preventDefault();
 
     try {
-      const response = await fetch("https://formspree.io/f/meogwwkw", {
+      const response = await fetch("https://formspree.io/f/xdkgredk", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Accept": "application/json",
         },
         body: JSON.stringify({
-          name: formData.name,
           email: formData.email,
-          phone: formData.phone,
-          interest: formData.interest,
-          message: formData.message,
-          newsletter: formData.newsletter ? "Yes" : "No",
+          message: `
+            Name: ${formData.name}
+            Phone: ${formData.phone}
+            Interest: ${formData.interest}
+            Newsletter: ${formData.newsletter ? "Yes" : "No"}
+            Message: ${formData.message}
+          `,
         }),
       });
 
@@ -178,8 +181,8 @@ export default function ContactSection() {
                     <option value="finance">Finance</option>
                     <option value="health">Health & Safety</option>
                     <option value="environmental">Environmental Safety</option>
-                    <option value="environmental">Engineering</option>
-                    <option value="environmental">IT</option>
+                    <option value="engineering">Engineering</option>
+                    <option value="it">IT</option>
                     <option value="other">Other</option>
                   </select>
                   <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-gray-500">

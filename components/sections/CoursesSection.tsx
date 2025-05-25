@@ -146,56 +146,7 @@ const CoursesTab = () => {
       ? filteredCourses.slice(0, 6)
       : filteredCourses;
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, checked } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: checked }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    try {
-      const response = await fetch("https://formspree.io/f/mbloakeg", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          interest: formData.interest,
-          message: formData.message,
-          newsletter: formData.newsletter ? "Yes" : "No",
-        }),
-      });
-
-      if (response.ok) {
-        toast.success("Thank you for your inquiry!");
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          interest: "",
-          message: "",
-          newsletter: false,
-        });
-      } else {
-        toast.error("Failed to submit. Please try again later.");
-      }
-    } catch (error) {
-      console.error("Submission error:", error);
-      toast.error("An error occurred. Please try again.");
-    }
-  };
+  
 
   return (
     <section id="courses" className="py-20 pt-48 bg-gray-50">

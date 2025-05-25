@@ -19,20 +19,20 @@ const mockEvents: Event[] = [
         image: "/images/events/Norway-UK-meet.jpeg",
         date: "2025-06-10",
     },
-    {
-        id: 2,
-        name: "Health & Safety Workshop",
-        description: "Hands-on safety training for industrial professionals.",
-        image: "/images/events/Norway-UK-meet.jpeg",
-        date: "2025-04-15",
-    },
-    {
-        id: 3,
-        name: "Green Tech Conference",
-        description: "Exploring sustainability and innovation in tech.",
-        image: "/images/events/Norway-UK-meet.jpeg",
-        date: "2025-07-01",
-    },
+    // {
+    //     id: 2,
+    //     name: "Health & Safety Workshop",
+    //     description: "Hands-on safety training for industrial professionals.",
+    //     image: "/images/events/Norway-UK-meet.jpeg",
+    //     date: "2025-04-15",
+    // },
+    // {
+    //     id: 3,
+    //     name: "Green Tech Conference",
+    //     description: "Exploring sustainability and innovation in tech.",
+    //     image: "/images/events/Norway-UK-meet.jpeg",
+    //     date: "2025-07-01",
+    // },
 ];
 
 export default function EventPage() {
@@ -76,12 +76,12 @@ export default function EventPage() {
                                     className="object-cover"
                                 />
                             </div>
-                            <div className="p-4 flex flex-col justify-between h-[200px]">
+                            <div className="p-4 flex flex-col justify-between">
                                 <h3 className="text-xl font-semibold mb-2">{event.name}</h3>
                                 <p className="text-sm text-gray-600 flex-grow">{event.description}</p>
-                                <button className="mt-4 bg-primary text-white px-4 py-2 rounded hover:bg-opacity-90">
+                                {/* <button className="mt-4 bg-primary text-white px-4 py-2 rounded hover:bg-opacity-90">
                                     Read More
-                                </button>
+                                </button> */}
                             </div>
                         </div>
 
@@ -108,9 +108,9 @@ export default function EventPage() {
                             <div className="p-4 flex flex-col justify-between h-[200px]">
                                 <h3 className="text-xl font-semibold mb-2">{event.name}</h3>
                                 <p className="text-sm text-gray-600 flex-grow">{event.description}</p>
-                                <button className="mt-4 bg-primary text-white px-4 py-2 rounded hover:bg-opacity-90">
+                                {/* <button className="mt-4 bg-primary text-white px-4 py-2 rounded hover:bg-opacity-90">
                                     Read More
-                                </button>
+                                </button> */}
                             </div>
                         </div>
 
