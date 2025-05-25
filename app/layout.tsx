@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import AosProvider from "@/components/providers/AosProvider";
+import { Toaster } from "react-hot-toast";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -33,7 +34,10 @@ export default function RootLayout({
       <body className={`${poppins.variable} font-poppins bg-white`}>
         <AosProvider>
           <Header />
-          <main>{children}</main>
+          <main>
+            {children}
+            <Toaster position="top-right" />
+          </main>
           <Footer />
         </AosProvider>
       </body>
