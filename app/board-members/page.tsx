@@ -453,30 +453,25 @@ export default function Page() {
     {
       id: 9,
       name: "Murat Sarayli",
-      title: "Entrepreneur",
-      bio: "Murat Sarayli is a third-generation international businessman and entrepreneur with expertise in developing short and long-term strategical plans and implementing innovative solutions in dynamic, multi stake holder arenas. 
-
-With over 30 years of operative experience in private businesses of international trade, real estate, construction and hospitality industries, Murat served as National Chairman of the Young Businessmen's Association of Turkey from 2004-2008. He also chaired YES, the Brussels-based European Confederation of Young Entrepreneurs, for three consecutive terms until 2008, representing 40,000 members from 16 countries. At YES, Murat worked diligently to advance the Lisbon Agenda, Europe's strategic plan towards greater economic growth and job creation, the hallmark of his tenure. 
-
-As an advocate of ethics, sustainability, and fair competition, he has been named as Young Global Leader by World Economic Forum in 2006.
-
-Murat is passionate about mentoring start-ups and also fostering sustainable conducive business eco-system for the young entrepreneurs in the global arena. He has been active in Sub Saharan Africa during last 20 years both supporting NGOs and business development. 
-
-Murat graduated with a degree in Management from the Middle East Technical University, Ankara, Turkey. He has also attended at Harvard, “Global Leadership and Public Policy module”, Yale University program on the “Foundations for Leadership in the 21st Century”, Wharton Institute of Executive Education on “Corporate Governance” with focus on strategies for the environmental, social, and governance (ESG) integrators to respond to conflicting demands and societal challenges to their organization and Mohammed VI Polytechnic University (UM6P), program on the Geopolitics, Economic and Demographics of Africa.",
+      title: "Entrepreneur & Global Business Leader",
+      bio: "Murat Sarayli is a third-generation international businessman and entrepreneur with over 30 years of hands-on experience in international trade, real estate, construction, and hospitality. Known for his strategic vision and innovative leadership, he specializes in developing long-term business strategies and driving impactful initiatives in complex, multi-stakeholder environments.\n\nHe served as the National Chairman of the Young Businessmen's Association of Turkey (2004–2008) and was elected Chairman of YES (European Confederation of Young Entrepreneurs), representing over 40,000 members from 16 countries. During his tenure, he actively promoted the Lisbon Agenda, contributing to economic growth and job creation across Europe.\n\nNamed a Young Global Leader by the World Economic Forum in 2006, Murat is a strong advocate for ethics, sustainability, and fair competition. He is deeply committed to mentoring startups and fostering entrepreneurial ecosystems, especially in Sub-Saharan Africa where he has been active for over two decades.\n\nMurat holds a degree in Management from the Middle East Technical University, Ankara. He has completed executive programs at Harvard (Global Leadership and Public Policy), Yale (Leadership in the 21st Century), Wharton (Corporate Governance and ESG Strategy), and UM6P (Geopolitics and Economics of Africa).",
       imageUrl: "/images/board-members/murat.png",
       region: "USA & Canada",
       about: {
         "Key Roles": [
-          "Leads development of health & safety curriculum.",
-          "Advises on health regulations and emergency protocols.",
+          "Chairman, YES – European Confederation of Young Entrepreneurs (2004–2008).",
+          "National Chairman, Young Businessmen's Association of Turkey (2004–2008).",
+          "Founder and strategic advisor to numerous startups and NGOs across Europe and Sub-Saharan Africa.",
         ],
         Expertise: [
-          "Public Health",
-          "Workplace Safety",
-          "Emergency Preparedness",
+          "International Business & Trade",
+          "Entrepreneurship & Startup Mentorship",
+          "Sustainable Development & ESG Strategy",
+          "Public Policy & Global Leadership",
         ],
       },
     },
+
     {
       id: 10,
       name: "Kwame Osei",
