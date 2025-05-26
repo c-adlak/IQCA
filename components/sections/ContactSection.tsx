@@ -32,22 +32,12 @@ export default function ContactSection() {
     e.preventDefault();
 
     try {
-      const response = await fetch("https://formspree.io/f/xdkgredk", {
+      const response = await fetch("http://localhost:5000/contact/send-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Accept": "application/json",
         },
-        body: JSON.stringify({
-          email: formData.email,
-          message: `
-            Name: ${formData.name}
-            Phone: ${formData.phone}
-            Interest: ${formData.interest}
-            Newsletter: ${formData.newsletter ? "Yes" : "No"}
-            Message: ${formData.message}
-          `,
-        }),
+        body: JSON.stringify(formData),
       });
 
       if (response.ok) {
