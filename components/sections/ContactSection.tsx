@@ -32,13 +32,16 @@ export default function ContactSection() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/contact/send-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://iqca-backend.onrender.com/contact/send-email",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (response.ok) {
         toast.success("Thank you for your inquiry!");
