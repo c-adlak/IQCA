@@ -456,7 +456,7 @@ export default function Page() {
       title: "Entrepreneur & Global Business Leader",
       bio: "Murat Sarayli is a third-generation international businessman and entrepreneur with over 30 years of hands-on experience in international trade, real estate, construction, and hospitality. Known for his strategic vision and innovative leadership, he specializes in developing long-term business strategies and driving impactful initiatives in complex, multi-stakeholder environments.\n\nHe served as the National Chairman of the Young Businessmen's Association of Turkey (2004–2008) and was elected Chairman of YES (European Confederation of Young Entrepreneurs), representing over 40,000 members from 16 countries. During his tenure, he actively promoted the Lisbon Agenda, contributing to economic growth and job creation across Europe.\n\nNamed a Young Global Leader by the World Economic Forum in 2006, Murat is a strong advocate for ethics, sustainability, and fair competition. He is deeply committed to mentoring startups and fostering entrepreneurial ecosystems, especially in Sub-Saharan Africa where he has been active for over two decades.\n\nMurat holds a degree in Management from the Middle East Technical University, Ankara. He has completed executive programs at Harvard (Global Leadership and Public Policy), Yale (Leadership in the 21st Century), Wharton (Corporate Governance and ESG Strategy), and UM6P (Geopolitics and Economics of Africa).",
       imageUrl: "/images/board-members/murat.png",
-      region: "USA & Canada",
+      region: "Europe",
       about: {
         "Key Roles": [
           "Chairman, YES – European Confederation of Young Entrepreneurs (2004–2008).",
