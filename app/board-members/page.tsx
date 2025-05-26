@@ -360,22 +360,21 @@ export default function Page() {
     {
       id: 1,
       name: "Martin Skov",
-      title: "Country chair, Administrative management and business network",
-      bio: "Nufail Naleem is a seasoned business consultant and strategic development expert with 13 years of experience, specializing in Fortune 500 companies, LSE, and SMEs. He is also an academic and corporate trainer who has mentored over 5000 students.",
+      title: "Managing Director & Chairman, OPUS International AS",
+      bio: "Martin Skov is a seasoned Norwegian business executive with a wealth of experience in corporate leadership and strategic management. He currently serves as the Managing Director and Chairman of OPUS International AS, a company specializing in management consulting services. Additionally, he holds the position of Chairman at Arena Innovasjon, reflecting his commitment to fostering innovation and business development.",
       imageUrl: "/images/board-members/martin.png",
-      region: "Asia",
+      region: "Europe",
       objectPosition: "0% 10%",
       about: {
         "Key Roles": [
-          "Business Consultant: Advises Fortune 500, LSE-listed, and SME companies on strategy and operations.",
-          "Academic & Corporate Trainer: Trained over 5000 students in business management and strategic planning.",
-          "Change Management Specialist: Leads initiatives involving AI adoption and organizational transformation.",
+          "Managing Director and Chairman of OPUS International AS, overseeing strategic direction and operations.",
+          "Chairman of Arena Innovasjon, promoting innovation and business development initiatives.",
+          "Major shareholder in OPUS International AS, holding a 33% ownership stake.",
         ],
         Expertise: [
-          "Business Consulting & Strategic Development",
-          "Change Management & AI Integration",
-          "Corporate Training & Mentorship",
-          "Financial Analysis & Planning",
+          "Corporate Leadership & Strategic Management",
+          "Business Development & Innovation",
+          "Governance & Organizational Oversight",
         ],
       },
     },
@@ -453,10 +452,18 @@ export default function Page() {
     },
     {
       id: 9,
-      name: "Dr. Emily Richards",
-      title: "Director of Health & Safety",
-      bio: "Emily combines her medical background with extensive training experience to develop our industry-leading health and safety curriculum.",
-      imageUrl: "/api/placeholder/400/320",
+      name: "Murat Sarayli",
+      title: "Entrepreneur",
+      bio: "Murat Sarayli is a third-generation international businessman and entrepreneur with expertise in developing short and long-term strategical plans and implementing innovative solutions in dynamic, multi stake holder arenas. 
+
+With over 30 years of operative experience in private businesses of international trade, real estate, construction and hospitality industries, Murat served as National Chairman of the Young Businessmen's Association of Turkey from 2004-2008. He also chaired YES, the Brussels-based European Confederation of Young Entrepreneurs, for three consecutive terms until 2008, representing 40,000 members from 16 countries. At YES, Murat worked diligently to advance the Lisbon Agenda, Europe's strategic plan towards greater economic growth and job creation, the hallmark of his tenure. 
+
+As an advocate of ethics, sustainability, and fair competition, he has been named as Young Global Leader by World Economic Forum in 2006.
+
+Murat is passionate about mentoring start-ups and also fostering sustainable conducive business eco-system for the young entrepreneurs in the global arena. He has been active in Sub Saharan Africa during last 20 years both supporting NGOs and business development. 
+
+Murat graduated with a degree in Management from the Middle East Technical University, Ankara, Turkey. He has also attended at Harvard, “Global Leadership and Public Policy module”, Yale University program on the “Foundations for Leadership in the 21st Century”, Wharton Institute of Executive Education on “Corporate Governance” with focus on strategies for the environmental, social, and governance (ESG) integrators to respond to conflicting demands and societal challenges to their organization and Mohammed VI Polytechnic University (UM6P), program on the Geopolitics, Economic and Demographics of Africa.",
+      imageUrl: "/images/board-members/murat.png",
       region: "USA & Canada",
       about: {
         "Key Roles": [
