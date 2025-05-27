@@ -2,7 +2,8 @@
 import React, { useEffect, useState } from "react";
 import MemberInquiryForm from "./memberInquiryForm";
 import MemberModal from "./MembersModal";
-
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_BASE_URL || "https://iqca-backend.onrender.com";
 // --- Types ---
 type BoardMember = {
   id: number;
@@ -155,7 +156,7 @@ const BoardMemberCard = ({ member, onClick }: BoardMemberCardProps) => (
   >
     <div className="h-64 overflow-hidden">
       <img
-        src={`http://localhost:5000${member.photo}`}
+        src={`${API_BASE_URL}${member.photo}`}
         alt={member.name}
         className="w-full h-full object-cover"
         style={{ objectPosition: member.objectPosition || "center" }}

@@ -10,6 +10,8 @@ type BoardMember = {
   objectPosition?: string;
   keyRolesAndExpertise: string[];
 };
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_BASE_URL || "https://iqca-backend.onrender.com";
 const MemberModal = ({
   member,
   onClose,
@@ -36,7 +38,7 @@ const MemberModal = ({
         <div className="grid grid-cols-1 md:grid-cols-2 h-full">
           <div className="h-64 md:h-full overflow-hidden bg-white flex items-center justify-center">
             <img
-              src={`https://iqca-backend.onrender.com${member.photo}`}
+              src={`${API_BASE_URL}${member.photo}`}
               alt={member.name}
               className="w-full h-full object-contain"
             />
