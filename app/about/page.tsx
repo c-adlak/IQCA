@@ -19,7 +19,7 @@ const AboutUsPage = () => {
     message: "",
   });
 
-  const handleChange = (e: { target: { name: any; value: any } }) => {
+  const handleChange = (e: { target: { name: string; value: string } }) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
@@ -30,16 +30,13 @@ const AboutUsPage = () => {
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
-    // Here you would typically handle the form submission to your backend
   };
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      {/* Header */}
-
       {/* Hero Section */}
       <section className="bg-white">
-        <div className="container mx-auto px-4 pt-44 pb-20 flex gap-8 flex-col md:flex-row items-center justify-between">
+        <div className="container mx-auto px-4 pt-8 pb-20 flex gap-8 flex-col md:flex-row items-center justify-between">
           <div className="md:w-1/2 mb-8 md:mb-0">
             <h1 className="text-3xl font-bold text-blue-900 mb-2">
               About ICQA: Excellence in Professional Training

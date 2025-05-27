@@ -26,7 +26,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 bg-white z-50 transition-all duration-300 ${
+      className={`sticky top-0 left-0 right-0 bg-white z-50 transition-all duration-300 ${
         isScrolled ? "py-2 shadow" : "py-4 shadow-sm"
       }`}
     >
@@ -115,6 +115,12 @@ export default function Header() {
             onClick={() => setMobileMenuOpen(false)}
           >
             Short Courses
+          </Link>
+          <Link
+            href="/events"
+            className="text-gray-800 hover:text-primary hover:font-semibold transform hover:scale-105 transition-all duration-300 font-medium nav-link"
+          >
+            Events
           </Link>
           <Link
             href="/board-members"

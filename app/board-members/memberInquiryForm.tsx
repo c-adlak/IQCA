@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Loading from "./Loading";
 
 const MemberInquiryForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,7 @@ const MemberInquiryForm: React.FC = () => {
     keyRolesAndExpertise: "",
     region: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -26,7 +28,7 @@ const MemberInquiryForm: React.FC = () => {
   };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+    setLoading(true);
     const data = new FormData();
 
     // Normalize LinkedIn URL
@@ -50,7 +52,7 @@ const MemberInquiryForm: React.FC = () => {
 
     try {
       const response = await fetch(
-        "https://iqca-backend.onrender.com/boardMembers/board-member-inquiry",
+        "http://localhost:5000/boardMembers/board-member-inquiry",
         {
           method: "POST",
           body: data,
@@ -58,11 +60,23 @@ const MemberInquiryForm: React.FC = () => {
       );
 
       if (!response.ok) throw new Error("Network response was not ok");
-      const result = await response.json();
+      await response.json();
       alert("Inquiry submitted successfully!");
+      setFormData({
+        name: "",
+        email: "",
+        designation: "",
+        about: "",
+        linkedin: "",
+        photo: null,
+        keyRolesAndExpertise: "",
+        region: "",
+      });
     } catch (error) {
       console.error("Upload error:", error);
       alert("Failed to submit the form.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -143,9 +157,17 @@ const MemberInquiryForm: React.FC = () => {
         />
         <button
           type="submit"
-          className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 font-medium rounded-lg text-sm px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700"
+          disabled={loading}
+          className="w-full flex items-center justify-center text-white bg-primary hover:bg-blue-800 focus:ring-4 font-medium rounded-lg text-sm px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700"
         >
-          Submit
+          {loading ? (
+            <div className="flex items-center gap-2">
+              <Loading />
+              <span>Submitting...</span>
+            </div>
+          ) : (
+            "Submit"
+          )}
         </button>
       </form>
     </div>

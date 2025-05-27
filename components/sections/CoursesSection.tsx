@@ -146,10 +146,8 @@ const CoursesTab = () => {
       ? filteredCourses.slice(0, 6)
       : filteredCourses;
 
-  
-
   return (
-    <section id="courses" className="py-20 pt-48 bg-gray-50">
+    <section id="courses" className="py-20 pt-8 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">

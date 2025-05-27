@@ -215,7 +215,7 @@ const CoursePage = () => {
   };
 
   return (
-    <section id="courses" className="py-20 pt-48 bg-gray-50">
+    <section id="courses" className="py-20 pt-8 bg-gray-50">
       <Toaster position="top-center" />
       <div className="container mx-auto px-4">
         <div className="text-center mb-12" data-aos="fade-up">
