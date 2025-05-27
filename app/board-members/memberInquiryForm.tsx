@@ -52,7 +52,7 @@ const MemberInquiryForm: React.FC = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/boardMembers/board-member-inquiry",
+        "https://iqca-backend.onrender.com/boardMembers/board-member-inquiry",
         {
           method: "POST",
           body: data,
@@ -123,7 +123,7 @@ const MemberInquiryForm: React.FC = () => {
         />
 
         <input
-          name="linkedin" // ✅ corrected
+          name="linkedin"
           placeholder="LinkedIn profile link"
           required
           value={formData.linkedin}

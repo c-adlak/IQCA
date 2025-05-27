@@ -36,7 +36,7 @@ const MemberModal = ({
         <div className="grid grid-cols-1 md:grid-cols-2 h-full">
           <div className="h-64 md:h-full overflow-hidden bg-white flex items-center justify-center">
             <img
-              src={`http://localhost:5000${member.photo}`}
+              src={`https://iqca-backend.onrender.com${member.photo}`}
               alt={member.name}
               className="w-full h-full object-contain"
             />

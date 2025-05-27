@@ -46,7 +46,7 @@ export default function Page() {
   const fetchBoardMembers = async () => {
     try {
       const res = await fetch(
-        "http://localhost:5000/boardMembers/get-board-members"
+        "https://iqca-backend.onrender.com/boardMembers/get-board-members"
       );
       const data = await res.json();
       const active = data.filter(
