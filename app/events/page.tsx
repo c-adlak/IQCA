@@ -15,7 +15,7 @@ const mockEvents: Event[] = [
     {
         id: 1,
         name: "Norway-UK Business Meet and Greet",
-        description: "Organised bt international qualification and certifications assessment board.",
+        description: "Organised by international qualification and certifications assessment board.",
         image: "/images/events/Norway-UK-meet.jpeg",
         date: "2025-06-10",
     },
