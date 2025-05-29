@@ -37,7 +37,7 @@ export default function Page() {
   const [selectedMember, setSelectedMember] = useState<BoardMember | null>(
     null
   );
-
+  const [loading, setLoading] = useState(true);
   const stats = [
     { id: 1, number: 1200, label: "Courses Delivered" },
     { id: 2, number: 85, label: "Corporate Partners" },
@@ -46,6 +46,7 @@ export default function Page() {
 
   const fetchBoardMembers = async () => {
     try {
+      setLoading(true);
       const res = await fetch(
         "https://iqca-backend.onrender.com/boardMembers/get-board-members"
       );
@@ -67,6 +68,8 @@ export default function Page() {
       setRegions(["All", ...uniqueRegions]);
     } catch (err) {
       console.error("Failed to fetch board members", err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -97,26 +100,38 @@ export default function Page() {
           </p>
 
           {/* Region Tabs */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-8 border-b">
-            {regions.map((region) => (
-              <button
-                key={region}
-                onClick={() => handleRegionChange(region)}
-                className={`w-full px-6 py-3 mb-6 font-medium text-lg rounded-lg transition-colors duration-200 ${
-                  activeRegion === region
-                    ? "bg-blue-600 text-white"
-                    : "bg-primary text-white hover:bg-blue-500"
-                }`}
-              >
-                {region}
-              </button>
-            ))}
-          </div>
+          {loading ? (
+            <div className="flex flex-col items-center justify-center py-12">
+              <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-4"></div>
+              <p className="text-blue-800 text-lg font-medium">
+                Loading members...
+              </p>
+            </div>
+          ) : (
+            <>
+              {/* Region Tabs */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-8 border-b">
+                {regions.map((region) => (
+                  <button
+                    key={region}
+                    onClick={() => handleRegionChange(region)}
+                    className={`w-full px-6 py-3 mb-6 font-medium text-lg rounded-lg transition-colors duration-200 ${
+                      activeRegion === region
+                        ? "bg-blue-600 text-white"
+                        : "bg-primary text-white hover:bg-blue-500"
+                    }`}
+                  >
+                    {region}
+                  </button>
+                ))}
+              </div>
+            </>
+          )}
         </header>
 
         {/* Members Grid */}
         <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {filteredMembers.map((member) => (
+          {filteredMembers?.map((member) => (
             <BoardMemberCard
               key={member.id}
               member={member}

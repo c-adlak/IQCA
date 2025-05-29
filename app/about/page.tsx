@@ -2,6 +2,7 @@
 import { useState } from "react";
 // import meetingImg from "";
 import Image from "next/image";
+import MeetingImg from "@/public/aboutPageImg/meetingImg.jpg";
 import {
   Facebook,
   Instagram,
@@ -11,6 +12,7 @@ import {
   Phone,
   Twitter,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 const AboutUsPage = () => {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -31,7 +33,15 @@ const AboutUsPage = () => {
     e.preventDefault();
     console.log("Form submitted:", formData);
   };
+  const router = useRouter();
 
+  const goToCourses = () => {
+    router.push("/courses");
+  };
+
+  const goToBoardMember = () => {
+    router.push("/board-members");
+  };
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
       {/* Hero Section */}
@@ -49,17 +59,23 @@ const AboutUsPage = () => {
               advancement.
             </p>
             <div className="flex space-x-4">
-              <button className="bg-blue-900 text-white px-6 py-2 rounded-md hover:bg-blue-800 transition">
+              <button
+                onClick={goToCourses}
+                className="bg-blue-900 text-white px-6 py-2 rounded-md hover:bg-blue-800 transition"
+              >
                 Our Courses
               </button>
-              <button className="border border-blue-900 text-blue-900 px-6 py-2 rounded-md hover:bg-blue-50 transition">
+              <button
+                onClick={goToBoardMember}
+                className="border border-blue-900 text-blue-900 px-6 py-2 rounded-md hover:bg-blue-50 transition"
+              >
                 Meet Our Team
               </button>
             </div>
           </div>
           <div className="md:w-1/2">
             <Image
-              src={"./aboutPageImg/meetingImg.jpg"}
+              src={MeetingImg}
               height={400}
               width={600}
               alt="Team meeting at ICQA"
