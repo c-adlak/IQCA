@@ -171,7 +171,11 @@ const BoardMemberCard = ({ member, onClick }: BoardMemberCardProps) => (
   >
     <div className="h-64 overflow-hidden">
       <img
-        src={`${API_BASE_URL}${member.photo}`}
+        src={
+          member.photo.startsWith("http")
+            ? member.photo
+            : `${API_BASE_URL}${member.photo}`
+        }
         alt={member.name}
         className="w-full h-full object-cover"
         style={{ objectPosition: member.objectPosition || "center" }}

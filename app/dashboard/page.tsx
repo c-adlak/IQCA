@@ -32,7 +32,7 @@ const Page = () => {
         }
       );
       const data = await response.json();
-      console.log("Fetched board members:", data);
+      // console.log("Fetched board members:", data);
       setBoardMembers(data);
     } catch (error) {
       console.error("Error fetching board members:", error);
