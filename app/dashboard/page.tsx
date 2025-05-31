@@ -13,7 +13,7 @@ type BoardMember = {
 };
 
 const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000";
+  process.env.NEXT_PUBLIC_API_BASE_URL || "https://iqca-backend.onrender.com";
 
 const Page = () => {
   const [boardMembers, setBoardMembers] = useState<BoardMember[]>([]);
