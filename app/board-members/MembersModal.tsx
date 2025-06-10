@@ -38,7 +38,11 @@ const MemberModal = ({
         <div className="grid grid-cols-1 md:grid-cols-2 h-full">
           <div className="h-64 md:h-full overflow-hidden bg-white flex items-center justify-center">
             <img
-              src={`${API_BASE_URL}${member.photo}`}
+              src={
+                member.photo.startsWith("http")
+                  ? member.photo
+                  : `${API_BASE_URL}${member.photo}`
+              }
               alt={member.name}
               className="w-full h-full object-contain"
             />

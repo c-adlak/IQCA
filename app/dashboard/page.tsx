@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-
 type BoardMember = {
   _id: string;
   name: string;
@@ -124,7 +123,9 @@ const Page = () => {
               />
               <h2 className="text-xl font-semibold">{member.name}</h2>
               <p className="text-sm text-gray-500">{member.designation}</p>
-              <p className="mt-2 text-gray-700">{member.about}</p>
+              <div className="mt-2 text-gray-700 max-h-32 overflow-auto pr-2 custom-scroll">
+                {member.about}
+              </div>
               <div className="mt-2">
                 <strong>Region:</strong> {member.region}
               </div>

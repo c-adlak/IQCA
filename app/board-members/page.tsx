@@ -169,7 +169,7 @@ const BoardMemberCard = ({ member, onClick }: BoardMemberCardProps) => (
     onClick={onClick}
     className="bg-white rounded-lg overflow-hidden shadow-md cursor-pointer hover:shadow-lg transition"
   >
-    <div className="h-64 overflow-hidden">
+    <div className="overflow-hidden mt-6 ">
       <img
         src={
           member.photo.startsWith("http")
@@ -177,15 +177,19 @@ const BoardMemberCard = ({ member, onClick }: BoardMemberCardProps) => (
             : `${API_BASE_URL}${member.photo}`
         }
         alt={member.name}
-        className="w-full h-full object-cover"
-        style={{ objectPosition: member.objectPosition || "center" }}
+        className="w-full h-48 object-contain rounded-md"
+        style={{
+          objectPosition: member.objectPosition || "center",
+        }}
       />
     </div>
     <div className="p-6">
       <h3 className="text-xl font-bold text-blue-900">{member.name}</h3>
       <p className="text-blue-800 mb-1">{member.designation}</p>
       <p className="text-orange-500 text-sm mb-4">{member.region}</p>
-      <p className="text-gray-700 text-sm">{member.about}</p>
+      <p className="text-gray-700 max-h-40 overflow-auto text-sm custom-scroll">
+        {member.about}
+      </p>
     </div>
   </div>
 );
