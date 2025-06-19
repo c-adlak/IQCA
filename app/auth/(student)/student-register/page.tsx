@@ -45,17 +45,20 @@ const RegisterPage = () => {
     }
 
     try {
-      const response = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: formData.username,
-          password: formData.password,
-          role: formData.role,
-        }),
-      });
+      const response = await fetch(
+        "https://iqca-backend.onrender.com/auth/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: formData.username,
+            password: formData.password,
+            role: formData.role,
+          }),
+        }
+      );
 
       const data = await response.json();
 
@@ -169,7 +172,7 @@ const RegisterPage = () => {
             <p className="text-sm text-gray-600">
               Already have an account?{" "}
               <Link
-                href="/login"
+                href="/auth/student-login"
                 className="font-medium text-indigo-600 hover:text-indigo-500"
               >
                 Sign in here
