@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
-
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_BASE_URL || "https://iqca-backend.onrender.com";
 const LoginPage = () => {
   const [formData, setFormData] = useState({
     username: "",
@@ -26,7 +26,7 @@ const LoginPage = () => {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:5000/auth/admin-login", {
+      const response = await fetch(`${API_BASE_URL}/auth/admin-login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
