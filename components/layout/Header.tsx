@@ -4,11 +4,25 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
-
+import { useRouter } from "next/navigation";
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [user, setUser] = useState<{ username: string; role: string } | null>(
+    null
+  );
   const [isScrolled, setIsScrolled] = useState(false);
+  const router = useRouter();
+  const [loginOption, setLoginOption] = useState("");
 
+  const handleLoginRedirect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value;
+    setLoginOption(value);
+    if (value === "student") {
+      router.push("/auth/student-login");
+    } else if (value === "admin") {
+      router.push("/auth/admin-login");
+    }
+  };
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -24,6 +38,18 @@ export default function Header() {
     };
   }, []);
 
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        setUser(parsedUser);
+      } catch (error) {
+        console.error("Error parsing user data:", error);
+        localStorage.removeItem("user");
+      }
+    }
+  }, []);
   return (
     <header
       className={`sticky top-0 left-0 right-0 bg-white z-50 transition-all duration-300 ${
@@ -47,6 +73,16 @@ export default function Header() {
           >
             Home
           </Link>
+          {user?.role && (
+            <Link
+              href="/dashboard"
+              className="text-gray-800 hover:text-primary hover:font-semibold transform hover:scale-105 transition-all duration-300 font-medium nav-link"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Dashboard
+            </Link>
+          )}
+
           <Link
             href="/about"
             className="text-gray-800 hover:text-primary hover:font-semibold transform hover:scale-105 transition-all duration-300 font-medium nav-link"
@@ -79,6 +115,17 @@ export default function Header() {
           >
             Book Consultation
           </Link>
+          <select
+            value={loginOption}
+            onChange={handleLoginRedirect}
+            className="hidden md:inline-block bg-primary text-white px-6 py-2.5 rounded-button font-medium transition-all duration-300 hover:bg-opacity-90 whitespace-nowrap appearance-none cursor-pointer"
+          >
+            <option value="" disabled>
+              Select Login
+            </option>
+            <option value="student">Student Login</option>
+            <option value="admin">Admin Login</option>
+          </select>
           <button
             className="md:hidden w-10 h-10 flex items-center justify-center text-gray-700"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
