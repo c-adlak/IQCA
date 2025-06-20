@@ -10,11 +10,8 @@ export default function Header() {
   const [user, setUser] = useState<{ username: string; role: string } | null>(
     null
   );
-  const [isScrolled, setIsScrolled] = useState(false);
   const router = useRouter();
   const [loginOption, setLoginOption] = useState("");
-  const [hasMounted, setHasMounted] = useState(false);
-  console.log("User:", user);
   const handleLoginRedirect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
     setLoginOption(value);
