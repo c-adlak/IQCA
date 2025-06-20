@@ -13,7 +13,8 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const router = useRouter();
   const [loginOption, setLoginOption] = useState("");
-
+  const [hasMounted, setHasMounted] = useState(false);
+  console.log("User:", user);
   const handleLoginRedirect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
     setLoginOption(value);
@@ -23,37 +24,37 @@ export default function Header() {
       router.push("/auth/admin-login");
     }
   };
+
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
+    const getUserFromStorage = () => {
+      const storedUser = localStorage.getItem("user");
+      if (storedUser) {
+        try {
+          const parsedUser = JSON.parse(storedUser);
+          setUser(parsedUser);
+        } catch (error) {
+          console.error("Error parsing user data:", error);
+          localStorage.removeItem("user");
+        }
       } else {
-        setIsScrolled(false);
+        setUser(null);
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    getUserFromStorage();
+    const onStorageChange = () => {
+      getUserFromStorage();
+    };
+
+    window.addEventListener("storage", onStorageChange);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("storage", onStorageChange);
     };
   }, []);
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      try {
-        const parsedUser = JSON.parse(storedUser);
-        setUser(parsedUser);
-      } catch (error) {
-        console.error("Error parsing user data:", error);
-        localStorage.removeItem("user");
-      }
-    }
-  }, []);
   return (
     <header
-      className={`sticky top-0 left-0 right-0 bg-white z-50 transition-all duration-300 ${
-        isScrolled ? "py-2 shadow" : "py-4 shadow-sm"
+      className={`sticky top-0 left-0 right-0 bg-white z-50 transition-all duration-300 "
       }`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
@@ -115,17 +116,20 @@ export default function Header() {
           >
             Book Consultation
           </Link>
-          <select
-            value={loginOption}
-            onChange={handleLoginRedirect}
-            className="hidden md:inline-block bg-primary text-white px-6 py-2.5 rounded-button font-medium transition-all duration-300 hover:bg-opacity-90 whitespace-nowrap appearance-none cursor-pointer"
-          >
-            <option value="" disabled>
-              Select Login
-            </option>
-            <option value="student">Student Login</option>
-            <option value="admin">Admin Login</option>
-          </select>
+          {!user && (
+            <select
+              value={loginOption}
+              onChange={handleLoginRedirect}
+              className="hidden md:inline-block bg-primary text-white px-6 py-2.5 rounded-button font-medium transition-all duration-300 hover:bg-opacity-90 whitespace-nowrap appearance-none cursor-pointer"
+            >
+              <option value="" disabled>
+                Select Login
+              </option>
+              <option value="student">Student Login</option>
+              <option value="admin">Admin Login</option>
+            </select>
+          )}
+
           <button
             className="md:hidden w-10 h-10 flex items-center justify-center text-gray-700"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -149,6 +153,15 @@ export default function Header() {
           >
             Home
           </Link>
+          {user?.role && (
+            <Link
+              href="/dashboard"
+              className="text-gray-800 hover:text-primary hover:font-semibold transform hover:scale-105 transition-all duration-300 font-medium nav-link"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Dashboard
+            </Link>
+          )}
           <Link
             href="/about"
             className="text-gray-800 hover:text-primary py-2 transition-colors duration-300 font-medium"

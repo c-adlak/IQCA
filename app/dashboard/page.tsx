@@ -73,7 +73,6 @@ const DashboardPage = () => {
       );
 
       if (response.status === 401) {
-        // Token expired or invalid
         handleLogout();
         return;
       }

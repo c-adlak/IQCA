@@ -47,8 +47,16 @@ export default function Page() {
   const fetchBoardMembers = async () => {
     try {
       setLoading(true);
+      const token = localStorage.getItem("token");
       const res = await fetch(
-        "https://iqca-backend.onrender.com/boardMembers/get-board-members"
+        "http://localhost:5000/boardMembers/board-members",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            // Authorization: `Bearer ${token}`,
+          },
+        }
       );
       const data = await res.json();
       const active = data.filter(
