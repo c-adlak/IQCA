@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import AosProvider from "@/components/providers/AosProvider";
 import { Toaster } from "react-hot-toast";
+import Chatbot from "@/components/layout/chatbot";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -36,6 +37,7 @@ export default function RootLayout({
           <Header />
           <main>
             {children}
+            <Chatbot />
             <Toaster position="top-right" />
           </main>
           <Footer />

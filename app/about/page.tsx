@@ -31,7 +31,6 @@ const AboutUsPage = () => {
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
   };
   const router = useRouter();
 
