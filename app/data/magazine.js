@@ -9,7 +9,7 @@ export const magazines = [
     publishYear: 2025,
     publishMonth: "July",
     issue: "July 2025",
-    pdfUrl: "/pdfs/Magazine-Final01.pdf",
+    pdfUrl: "/pdfs/magazine.pdf",
   },
   // {
   //   id: "2",
