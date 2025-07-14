@@ -91,7 +91,7 @@ export default function Header() {
             href="/magazine"
             className="text-gray-800 hover:text-primary hover:font-semibold transform hover:scale-105 transition-all duration-300 font-medium nav-link"
           >
-            Magazine
+            IQBIZ
           </Link>
           <Link
             href="/courses"
@@ -176,7 +176,7 @@ export default function Header() {
             href="/magazine"
             className="text-gray-800 hover:text-primary hover:font-semibold transform hover:scale-105 transition-all duration-300 font-medium nav-link"
           >
-            Magazine
+            IQBIZ
           </Link>
           <Link
             href="/courses"
