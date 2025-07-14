@@ -3,13 +3,11 @@ import { useState, useMemo, use, useEffect } from "react";
 
 import YearTabs from "../../components/ui/YearTabs";
 import MagazineCard from "../../components/ui/MagazineCard";
-import PDFViewer from "../../components/ui/PDFViewer";
 import { magazines } from "../data/magazine";
 
 function MagazinePage() {
   const [selectedYear, setSelectedYear] = useState(null);
-  const [selectedMagazine, setSelectedMagazine] = useState(null);
-  const [isPDFViewerOpen, setIsPDFViewerOpen] = useState(false);
+
 
   const availableYears = useMemo(() => {
     const years = [...new Set(magazines.map((mag) => mag.publishYear))];
@@ -21,15 +19,6 @@ function MagazinePage() {
     return magazines?.filter((mag) => mag.publishYear === selectedYear);
   }, [selectedYear]);
 
-  // const handleMagazineClick = (magazine) => {
-  //   setSelectedMagazine(magazine);
-  //   setIsPDFViewerOpen(true);
-  // };
-
-  const handleClosePDFViewer = () => {
-    setIsPDFViewerOpen(false);
-    setSelectedMagazine(null);
-  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -68,7 +57,6 @@ function MagazinePage() {
             <MagazineCard
               key={magazine.id}
               magazine={magazine}
-              // onMagazineClick={handleMagazineClick}
             />
             </a>
           ))}
@@ -90,12 +78,6 @@ function MagazinePage() {
         )}
       </div>
 
-      {/* PDF Viewer Modal */}
-      {/* <PDFViewer
-        magazine={selectedMagazine}
-        isOpen={isPDFViewerOpen}
-        onClose={handleClosePDFViewer}
-      /> */}
     </div>
   );
 }
