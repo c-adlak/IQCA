@@ -88,6 +88,12 @@ export default function Header() {
             About Us
           </Link>
           <Link
+            href="/magazine"
+            className="text-gray-800 hover:text-primary hover:font-semibold transform hover:scale-105 transition-all duration-300 font-medium nav-link"
+          >
+            Magazine
+          </Link>
+          <Link
             href="/courses"
             className="text-gray-800 hover:text-primary hover:font-semibold transform hover:scale-105 transition-all duration-300 font-medium nav-link"
           >
