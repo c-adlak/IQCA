@@ -47,7 +47,7 @@ function MagazinePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8">
           {filteredMagazines.map((magazine) => (
           <a
-            href={`/pdfjs/web/viewer.html?file=${magazine.pdfUrl}`}
+            href={magazine.pdfUrl}
             target="_blank"
             rel="noopener noreferrer"
             style={{

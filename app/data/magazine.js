@@ -9,7 +9,7 @@ export const magazines = [
     publishYear: 2025,
     publishMonth: "July",
     issue: "July 2025",
-    pdfUrl: "/pdfs/magazine.pdf",
+    pdfUrl: "https://drive.google.com/file/d/1sLmB5rPHy4Mf0aRK92hXb-4hm9UPzjLZ/view?usp=drive_link",
   },
   // {
   //   id: "2",
