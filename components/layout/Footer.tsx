@@ -170,7 +170,7 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-6">Contact Information</h3>
             <ul className="space-y-3">
               <li className="flex items-start">
-                <div className="w-5 h-5 flex items-center justify-center text-primary mr-3 mt-1">
+                <div className="w-5 h-5 flex items-center justify-center text-[#bf9c56] mr-3 mt-1">
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div className="flex flex-col">
@@ -184,19 +184,19 @@ export default function Footer() {
                 </div>
               </li>
               <li className="flex items-start">
-                <div className="w-5 h-5 flex items-center justify-center text-primary mr-3 mt-1">
+                <div className="w-5 h-5 flex items-center justify-center text-[#bf9c56] mr-3 mt-1">
                   <Phone className="w-5 h-5" />
                 </div>
                 <span className="text-gray-400">0204111799</span>
               </li>
               <li className="flex items-start">
-                <div className="w-5 h-5 flex items-center justify-center text-primary mr-3 mt-1">
+                <div className="w-5 h-5 flex items-center justify-center text-[#bf9c56] mr-3 mt-1">
                   <Mail className="w-5 h-5" />
                 </div>
                 <span className="text-gray-400">Support@iqcaboard.co.uk</span>
               </li>
               <li className="flex items-start">
-                <div className="w-5 h-5 flex items-center justify-center text-primary mr-3 mt-1">
+                <div className="w-5 h-5 flex items-center justify-center text-[#bf9c56] mr-3 mt-1">
                   <Clock className="w-5 h-5" />
                 </div>
                 <span className="text-gray-400">

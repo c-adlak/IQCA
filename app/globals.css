@@ -105,7 +105,7 @@
   }
 
   .animate-text-gradient {
-    background: linear-gradient(90deg, #243a74, #4a5fa3, #243a74);
+    background: linear-gradient(90deg, #d1a754, #d7b778, #e5cb97);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

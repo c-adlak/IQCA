@@ -142,7 +142,7 @@ export default function WhyLearningFromUsSection() {
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-6">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-primary mb-1">
+                  <div className="text-3xl font-bold text-[#bf9c56] mb-1">
                     15,000+
                   </div>
                   <p className="text-sm text-gray-600">
@@ -150,19 +150,19 @@ export default function WhyLearningFromUsSection() {
                   </p>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-primary mb-1">
+                  <div className="text-3xl font-bold text-[#bf9c56] mb-1">
                     98%
                   </div>
                   <p className="text-sm text-gray-600">Satisfaction Rate</p>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-primary mb-1">
+                  <div className="text-3xl font-bold text-[#bf9c56] mb-1">
                     40+
                   </div>
                   <p className="text-sm text-gray-600">Countries Served</p>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-primary mb-1">
+                  <div className="text-3xl font-bold text-[#bf9c56] mb-1">
                     85%
                   </div>
                   <p className="text-sm text-gray-600">Career Advancement</p>

@@ -41,7 +41,7 @@ export default function HeroSection() {
           >
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6 animate-fade-in">
               Empower Your Future with Industry-Leading Training &{" "}
-              <span className="text-primary animate-text-gradient">
+              <span className="text-[#bf9c56] animate-text-gradient">
                 Certifications
               </span>
             </h1>
@@ -87,7 +87,7 @@ export default function HeroSection() {
             >
               <div className="transform hover:scale-105 transition-transform duration-300">
                 <div
-                  className="text-2xl font-bold text-primary mb-1 counter"
+                  className="text-2xl font-bold text-[#bf9c56] mb-1 counter"
                   data-target="500"
                 >
                   {count500}+
@@ -97,11 +97,11 @@ export default function HeroSection() {
                 </div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-primary mb-1">98%</div>
+              <div className="text-2xl font-bold text-[#bf9c56] mb-1">98%</div>
                 <div className="text-sm text-gray-600">Success Rate</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-primary mb-1">50+</div>
+                <div className="text-2xl font-bold text-[#bf9c56] mb-1">50+</div>
                 <div className="text-sm text-gray-600">Expert Instructors</div>
               </div>
             </div>

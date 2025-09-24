@@ -116,7 +116,7 @@ const AboutUsPage = () => {
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-bold text-blue-900 mb-2">Excellence</h3>
+            <h3 className="text-xl font-bold text-[#bf9c56] mb-2">Excellence</h3>
             <p className="text-gray-700">
               We are dedicated to every course we deliver, ensuring the highest
               standards of educational quality and professional relevance.
@@ -141,7 +141,7 @@ const AboutUsPage = () => {
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-bold text-blue-900 mb-2">Innovation</h3>
+            <h3 className="text-xl font-bold text-[#bf9c56] mb-2">Innovation</h3>
             <p className="text-gray-700">
               We continuously explore new teaching methodologies and create
               content to reflect the latest industry developments and best
@@ -167,7 +167,7 @@ const AboutUsPage = () => {
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-bold text-blue-900 mb-2">Community</h3>
+            <h3 className="text-xl font-bold text-[#bf9c56] mb-2">Community</h3>
             <p className="text-gray-700">
               We foster a supportive learning community where professionals can
               network, share insights, and grow together as they implement them.
@@ -224,19 +224,19 @@ const AboutUsPage = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
             <div>
-              <p className="text-4xl font-bold text-blue-900 mb-2">15+</p>
+              <p className="text-4xl font-bold text-[#bf9c56] mb-2">15+</p>
               <p className="text-gray-700">Years of Experience</p>
             </div>
             <div>
-              <p className="text-4xl font-bold text-blue-900 mb-2">500+</p>
+              <p className="text-4xl font-bold text-[#bf9c56] mb-2">500+</p>
               <p className="text-gray-700">Certified Professionals</p>
             </div>
             <div>
-              <p className="text-4xl font-bold text-blue-900 mb-2">98%</p>
+              <p className="text-4xl font-bold text-[#bf9c56] mb-2">98%</p>
               <p className="text-gray-700">Success Rate</p>
             </div>
             <div>
-              <p className="text-4xl font-bold text-blue-900 mb-2">50+</p>
+              <p className="text-4xl font-bold text-[#bf9c56] mb-2">50+</p>
               <p className="text-gray-700">Expert Instructors</p>
             </div>
           </div>

@@ -16,7 +16,7 @@ const Chatbot = () => {
           position: "fixed",
           bottom: "20px",
           right: "20px",
-          backgroundColor: "#4F46E5",
+          backgroundColor: "#bf9c56",
           color: "white",
           padding: "10px 16px",
           borderRadius: "8px",
