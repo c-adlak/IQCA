@@ -117,7 +117,7 @@ const MemberInquiryForm: React.FC = () => {
   return (
     <div className="w-full max-w-2xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mt-10">
       <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
-        Partners and Sponsors 
+      Become a Sponsors
       </h2>
       <form className="space-y-5" onSubmit={handleSubmit}>
         {[
