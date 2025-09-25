@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
 import CoursePage from "../page";
 type Course = {
@@ -13,14 +14,22 @@ type Course = {
   image: string;
 };
 export default function ContactForCourse() {
+  const searchParams = useSearchParams();
+  const selectedCourse = searchParams.get("course") || "Enroll for an IQCA Course";
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    interest: "",
+    interest: selectedCourse === "Enroll for an IQCA Course" ? "" : selectedCourse,
     message: "",
     newsletter: false,
   });
+  useEffect(() => {
+    const courseFromQuery = searchParams.get("course");
+    if (courseFromQuery) {
+      setFormData((prev) => ({ ...prev, interest: courseFromQuery }));
+    }
+  }, [searchParams]);
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
@@ -86,9 +95,7 @@ export default function ContactForCourse() {
 
       {/* Header */}
       <div className="container mx-auto px-4 py-16">
-        <h1 className="text-4xl font-bold text-white mb-2">
-          200hr Yoga Teacher Training Diploma Course
-        </h1>
+        <h1 className="text-4xl font-bold text-white mb-2">{selectedCourse}</h1>
         <div className="flex justify-between items-center">
           <p className="text-white">Online Course</p>
           <div className="flex items-center">
@@ -284,9 +291,6 @@ export default function ContactForCourse() {
                 centre. Our aim is to help individuals to achieve excellence in
                 every area of their life via quality distance learning.
               </p>
-              <button className="mt-4 bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded">
-                View Profile
-              </button>
             </div>
           </div>
         </div>
