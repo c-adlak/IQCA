@@ -98,7 +98,7 @@ export default function Page() {
         {/* Title */}
         <header className="mb-12">
           <h1 className="text-4xl font-bold text-blue-900 mb-2">
-            Our Board Members
+            Partners and Sponsors
           </h1>
           <p className="text-gray-600 max-w-3xl mb-8">
             Meet the experienced professionals leading our organization to
