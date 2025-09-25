@@ -73,6 +73,12 @@ export default function Header() {
           >
             Home
           </Link>
+          <Link
+            href="/career"
+            className="text-gray-800 hover:text-primary hover:font-semibold transform hover:scale-105 transition-all duration-300 font-medium nav-link"
+          >
+            Career
+          </Link>
           {user?.role && (
             <Link
               href="/dashboard"
@@ -169,6 +175,13 @@ export default function Header() {
             onClick={() => setMobileMenuOpen(false)}
           >
             Home
+          </Link>
+          <Link
+            href="/career"
+            className="text-gray-800 hover:text-primary py-2 transition-colors duration-300 font-medium"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Career
           </Link>
           {user?.role && (
             <Link
