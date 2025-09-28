@@ -21,13 +21,13 @@ const mockEvents: Event[] = [
     image: "/images/events/Norway-UK-meet.jpeg",
     date: "2025-06-10",
   },
-  // {
-  //     id: 2,
-  //     name: "Health & Safety Workshop",
-  //     description: "Hands-on safety training for industrial professionals.",
-  //     image: "/images/events/Norway-UK-meet.jpeg",
-  //     date: "2025-04-15",
-  // },
+  {
+      id: 2,
+      name: "IQBiz Global Business and Investors Submmit 2025",
+      description: "Discover our upcoming summits and programs designed to fuel growth, investment, and global recognition. Click to view event details and register your spot.",
+      image: "/images/events/IQBiz-Global-Business.jpg",
+      date: "2026-12-15",
+  },
   // {
   //     id: 3,
   //     name: "Green Tech Conference",
@@ -43,16 +43,25 @@ export default function EventPage() {
 
   useEffect(() => {
     const today = new Date();
-    const upcomingEvents = mockEvents.filter(
-      (event) => new Date(event.date) >= today
-    );
-    const pastEvents = mockEvents.filter(
-      (event) => new Date(event.date) < today
-    );
+    today.setHours(0, 0, 0, 0); // Reset time to start of day for accurate comparison
+    
+    const upcomingEvents = mockEvents.filter((event) => {
+      const eventDate = new Date(event.date);
+      eventDate.setHours(0, 0, 0, 0); // Reset time to start of day
+      return eventDate >= today; // Include today's events as upcoming
+    });
+    
+    const pastEvents = mockEvents.filter((event) => {
+      const eventDate = new Date(event.date);
+      eventDate.setHours(0, 0, 0, 0); // Reset time to start of day
+      return eventDate < today; // Only past events
+    });
+    
     setUpcoming(upcomingEvents);
     setPast(pastEvents);
   }, []);
-
+  console.log(upcoming, "upcoming")
+  console.log(past, "past")
   return (
     <div className="py-12 px-4 pt-32 md:px-10 bg-gray-50 text-gray-800">
       <div className="text-center mb-12">
@@ -61,7 +70,6 @@ export default function EventPage() {
           “Empowering through knowledge, one event at a time.”
         </p>
       </div>
-      <EventPhotoGrid />
       {upcoming.length >= 1 && (
         <section className="mb-16">
           <h2 className="text-2xl font-semibold mb-6 text-primary">
@@ -95,6 +103,9 @@ export default function EventPage() {
           </div>
         </section>
       )}
+
+      <EventPhotoGrid />
+    
 
       {past.length >= 1 && (
         <section>

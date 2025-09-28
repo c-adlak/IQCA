@@ -1,141 +1,71 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Clock, Award, ArrowRight } from "lucide-react";
 import toast, { Toaster } from "react-hot-toast";
 import Link from "next/link";
 
 type Course = {
-  id: number;
+  _id: string;
   title: string;
   description: string;
   category: string;
   duration: string;
   image: string;
+  __v: number;
+  createdAt: string;
+  updatedAt: string;
 };
-
 const CoursesTab = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [showAllCourses, setShowAllCourses] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    interest: "",
-    message: "",
-    newsletter: false,
-  });
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const filters = [
-    { id: "all", name: "All Courses" },
-    { id: "finance", name: "Finance" },
-    { id: "health", name: "Health & Safety" },
-    { id: "environmental", name: "Environmental Safety" },
-    { id: "it", name: "IT" },
-    { id: "engineering", name: "Engineering" },
-  ];
+  // Dynamic filters state
+  const [filters, setFilters] = useState<{ id: string; name: string }[]>([
+    { id: "all", name: "All Courses" }, // Always keep "All" filter
+  ]);
 
-  const courses = [
-    {
-      id: 1,
-      title: "Financial Risk Management",
-      description:
-        "Master the essential principles of identifying, assessing, and mitigating financial risks in modern business environments.",
-      category: "finance",
-      duration: "12 Weeks",
-      image:
-        "https://images.pexels.com/photos/7681091/pexels-photo-7681091.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-    {
-      id: 2,
-      title: "Workplace Health & Safety",
-      description:
-        "Comprehensive training on creating and maintaining safe work environments, hazard identification, and regulatory compliance.",
-      category: "health",
-      duration: "8 Weeks",
-      image:
-        "https://images.pexels.com/photos/8961065/pexels-photo-8961065.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-    {
-      id: 3,
-      title: "Environmental Risk Assessment",
-      description:
-        "Learn to identify, analyze and mitigate environmental hazards while ensuring compliance with international standards.",
-      category: "environmental",
-      duration: "10 Weeks",
-      image:
-        "https://images.pexels.com/photos/5690988/pexels-photo-5690988.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-    {
-      id: 4,
-      title: "Investment Banking Fundamentals",
-      description:
-        "Gain a solid foundation in investment banking principles, valuation methods, and financial modeling.",
-      category: "finance",
-      duration: "14 Weeks",
-      image:
-        "https://images.pexels.com/photos/7567434/pexels-photo-7567434.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-    {
-      id: 5,
-      title: "Emergency Response Training",
-      description:
-        "Learn essential emergency response procedures and crisis management techniques for workplace safety.",
-      category: "health",
-      duration: "6 Weeks",
-      image:
-        "https://images.pexels.com/photos/8961256/pexels-photo-8961256.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-    {
-      id: 6,
-      title: "Sustainable Business Practices",
-      description:
-        "Develop strategies for implementing sustainable business practices and environmental management systems.",
-      category: "environmental",
-      duration: "8 Weeks",
-      image:
-        "https://images.pexels.com/photos/5690991/pexels-photo-5690991.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-    {
-      id: 7,
-      title: "Corporate Finance Strategy",
-      description:
-        "Advanced course in financial planning, capital structure, and value creation strategies.",
-      category: "finance",
-      duration: "10 Weeks",
-      image:
-        "https://images.pexels.com/photos/4386373/pexels-photo-4386373.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-    {
-      id: 8,
-      title: "Quantity Surveyor with BIM Integration",
-      description:
-        "This CPD-accredited course bridges traditional quantity surveying with modern BIM practices using Autodesk Revit and Navisworks for accurate project estimation and management.",
-      category: "engineering",
-      duration: "6-8 Weeks",
-      image:
-        "https://images.pexels.com/photos/4254890/pexels-photo-4254890.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", // placeholder, replace if needed
-    },
-    {
-      id: 9,
-      title: "Solar Energy Systems for Civil Engineers",
-      description:
-        "Hands-on CPD-accredited training for civil engineers in solar PV systems, including installation, grid integration, and NABCEP-aligned modules for green building readiness.",
-      category: "engineering",
-      duration: "6-8 Weeks",
-      image:
-        "https://images.pexels.com/photos/4254168/pexels-photo-4254168.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", // placeholder, replace if needed
-    },
-    {
-      id: 10,
-      title: "Cyber Security Fundamentals",
-      description:
-        "CPD-accredited course on network security, ethical hacking, threat analysis, and regulatory compliance to prepare IT professionals to combat modern cyber threats.",
-      category: "it",
-      duration: "8 Weeks",
-      image:
-        "https://images.pexels.com/photos/5380658/pexels-photo-5380658.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", // placeholder, replace if needed
-    },
-  ];
+  // Fetch courses from API
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch("https://iqca-backend.onrender.com/courses/");
+        if (!response.ok) {
+          throw new Error("Failed to fetch courses");
+        }
+        const data: Course[] = await response.json();
+        setCourses(data);
+
+        // Create dynamic filters from fetched courses
+        const uniqueCategories = Array.from(
+          new Set(data.map((course) => course.category))
+        );
+
+        const dynamicFilters = uniqueCategories.map((category) => {
+          // You can format the name nicely if needed
+          let formattedName = category
+            .split("-")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
+          return { id: category, name: formattedName };
+        });
+
+        setFilters([{ id: "all", name: "All Courses" }, ...dynamicFilters]);
+
+        setError(null);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "An error occurred");
+        console.error("Error fetching courses:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCourses();
+  }, []);
 
   const filteredCourses = courses.filter(
     (course) => activeFilter === "all" || course.category === activeFilter
@@ -145,6 +75,57 @@ const CoursesTab = () => {
     activeFilter === "all" && !showAllCourses
       ? filteredCourses.slice(0, 6)
       : filteredCourses;
+
+
+  // Loading state
+  if (loading) {
+    return (
+      <section id="courses" className="py-20 pt-8 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Explore Our Featured Courses
+            </h2>
+            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
+              Learn, Grow & Succeed with our industry-recognized training
+              programs.
+            </p>
+          </div>
+          <div className="flex justify-center items-center py-20">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <section id="courses" className="py-20 pt-8 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Explore Our Featured Courses
+            </h2>
+            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
+              Learn, Grow & Succeed with our industry-recognized training
+              programs.
+            </p>
+          </div>
+          <div className="text-center py-20">
+            <p className="text-red-600 text-lg">Error loading courses: {error}</p>
+            <button
+              onClick={() => window.location.reload()}
+              className="mt-4 bg-primary text-white px-6 py-2 rounded-md hover:bg-opacity-90"
+            >
+              Retry
+            </button>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="courses" className="py-20 pt-8 bg-gray-50">
@@ -167,11 +148,10 @@ const CoursesTab = () => {
                 setActiveFilter(filter.id);
                 setShowAllCourses(false);
               }}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                activeFilter === filter.id
+              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeFilter === filter.id
                   ? "bg-primary text-white"
                   : "bg-white text-gray-700 hover:bg-gray-100"
-              }`}
+                }`}
             >
               {filter.name}
             </button>
@@ -181,7 +161,7 @@ const CoursesTab = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {visibleCourses.map((course) => (
             <div
-              key={course.id}
+              key={course._id}
               className="bg-white rounded-lg overflow-hidden shadow-md hover:translate-y-[-5px] transition-all duration-300"
             >
               <div className="relative">
@@ -212,7 +192,7 @@ const CoursesTab = () => {
                 </div>
                 <Link
                   className="inline-block w-full bg-white border border-primary text-primary text-center px-4 py-2 rounded-md font-medium transition-all duration-300 hover:bg-primary/5"
-                  href={`/courses/show-interest/${course.id}`}
+                  href={`/courses/show-interest/${course._id}`}
                 >
                   Learn More
                 </Link>
@@ -229,9 +209,8 @@ const CoursesTab = () => {
             >
               {showAllCourses ? "View Less" : "View All"}
               <ArrowRight
-                className={`w-5 h-5 ml-2 transform transition-transform ${
-                  showAllCourses ? "-rotate-90" : ""
-                }`}
+                className={`w-5 h-5 ml-2 transform transition-transform ${showAllCourses ? "-rotate-90" : ""
+                  }`}
               />
             </button>
           </div>

@@ -1,19 +1,36 @@
 import Link from "next/link";
-import { courses, getCourseById } from "../../../data/courses";
+import { fetchCourseById, fetchAllCourses, Course } from "../../../../lib/api";
 import ShowInterestForm from "./show-interest-form";
 
-export function generateStaticParams() {
-  return courses.map((c) => ({ id: String(c.id) }));
+export async function generateStaticParams() {
+  try {
+    const courses = await fetchAllCourses();
+    return courses.map((course) => ({ id: course._id }));
+  } catch (error) {
+    console.error("Error generating static params:", error);
+    return [];
+  }
 }
 
-export default function ShowInterestByIdPage({ params }: { params: { id: string } }) {
-  const course = getCourseById(params.id);
+export default async function ShowInterestByIdPage({ params }: { params: { id: string } }) {
+  let course: Course | null = null;
+  let error: string | null = null;
 
-  if (!course) {
+  try {
+    course = await fetchCourseById(params.id);
+  } catch (err) {
+    error = err instanceof Error ? err.message : "Failed to load course";
+    console.error("Error loading course:", err);
+  }
+
+  if (error || !course) {
     return (
       <div className="min-h-screen mt-32 flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-2">Course not found</h1>
+          <p className="text-gray-600 mb-4">
+            {error || "The course you're looking for doesn't exist."}
+          </p>
           <Link href="/#courses" className="text-primary underline">
             Back to courses
           </Link>
@@ -52,7 +69,7 @@ export default function ShowInterestByIdPage({ params }: { params: { id: string 
               <ShowInterestForm courseTitle={course.title} />
             </div>
             <div className="md:w-1/3">
-            <div className="border-b-2 border-blue-500 pt-2 mb-4">
+              <div className="border-b-2 border-blue-500 pt-2 mb-4">
                 <h3 className="text-xl font-bold text-gray-800">
                   IQCA Provider
                 </h3>
@@ -76,11 +93,9 @@ export default function ShowInterestByIdPage({ params }: { params: { id: string 
                 every area of their life via quality distance learning.
               </p>
             </div>
-            </div>
           </div>
         </div>
       </div>
+    </div>
   );
 }
-
-

@@ -5,12 +5,10 @@ const MemberInquiryForm: React.FC = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    designation: "",
+    phone: "",
+    country: "",
     about: "",
-    linkedin: "",
     photo: null as File | null,
-    keyRolesAndExpertise: "",
-    region: "",
   });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [loading, setLoading] = useState(false);
@@ -18,27 +16,16 @@ const MemberInquiryForm: React.FC = () => {
   const validate = () => {
     const newErrors: { [key: string]: string } = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const linkedinRegex = /^https:\/\/(www\.)?linkedin\.com\/.*$/;
 
     if (formData.name.trim().length < 2) newErrors.name = "Name is too short.";
     if (!emailRegex.test(formData.email))
       newErrors.email = "Invalid email address.";
-    if (formData.designation.trim().length < 2)
-      newErrors.designation = "Designation is too short.";
+    if (formData.phone.trim().length < 7)
+      newErrors.phone = "Phone number is too short.";
+    if (formData.country.trim().length < 2)
+      newErrors.country = "Country name is too short.";
     if (formData.about.trim().length < 10)
       newErrors.about = "About must be at least 10 characters.";
-    if (
-      !linkedinRegex.test(
-        `https://${formData.linkedin.replace(/^https?:\/\//, "")}`
-      )
-    ) {
-      newErrors.linkedin =
-        "Provide a valid LinkedIn URL (https://linkedin.com/...)";
-    }
-    if (!formData.keyRolesAndExpertise.trim())
-      newErrors.keyRolesAndExpertise = "Provide at least one key role.";
-    if (formData.region.trim().length < 2)
-      newErrors.region = "Region is too short.";
     if (!formData.photo) {
       newErrors.photo = "Please upload a photo.";
     } else if (
@@ -70,17 +57,12 @@ const MemberInquiryForm: React.FC = () => {
 
     setLoading(true);
     const data = new FormData();
-    const normalizedLinkedin = formData.linkedin.startsWith("http")
-      ? formData.linkedin
-      : `https://${formData.linkedin}`;
 
     data.append("name", formData.name);
-    data.append("designation", formData.designation);
-    data.append("about", formData.about);
-    data.append("keyRolesAndExpertise", formData.keyRolesAndExpertise);
-    data.append("region", formData.region);
     data.append("email", formData.email);
-    data.append("linkedin", normalizedLinkedin);
+    data.append("phone", formData.phone);
+    data.append("country", formData.country);
+    data.append("about", formData.about);
     if (formData.photo) data.append("photo", formData.photo);
 
     try {
@@ -98,12 +80,10 @@ const MemberInquiryForm: React.FC = () => {
       setFormData({
         name: "",
         email: "",
-        designation: "",
+        phone: "",
+        country: "",
         about: "",
-        linkedin: "",
         photo: null,
-        keyRolesAndExpertise: "",
-        region: "",
       });
       setErrors({});
     } catch (error) {
@@ -117,27 +97,17 @@ const MemberInquiryForm: React.FC = () => {
   return (
     <div className="w-full max-w-2xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mt-10">
       <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
-      Become a Sponsors
+        Become a Sponsor
       </h2>
       <form className="space-y-5" onSubmit={handleSubmit}>
         {[
           { name: "name", type: "text", placeholder: "Name" },
           { name: "email", type: "email", placeholder: "Email ID" },
-          { name: "designation", type: "text", placeholder: "Designation" },
+          { name: "phone", type: "text", placeholder: "Contact No" },
           {
-            name: "linkedin",
+            name: "country",
             type: "text",
-            placeholder: "LinkedIn profile link",
-          },
-          {
-            name: "keyRolesAndExpertise",
-            type: "text",
-            placeholder: "Key Roles and Expertise (comma separated)",
-          },
-          {
-            name: "region",
-            type: "text",
-            placeholder: "Enter your region or country",
+            placeholder: "Enter your country",
           },
         ].map(({ name, type, placeholder }) => (
           <div key={name}>

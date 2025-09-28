@@ -6,6 +6,9 @@ const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL || "https://iqca-backend.onrender.com";
 // --- Types ---
 type BoardMember = {
+  location: string;
+  phone: string;
+  country: string;
   id: number;
   name: string;
   title: string;
@@ -44,6 +47,41 @@ export default function Page() {
     { id: 3, number: "25+", label: "Years of Experience" },
   ];
 
+  // const fetchBoardMembers = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const res = await fetch(
+  //       "https://iqca-backend.onrender.com/boardMembers/board-members",
+  //       {
+  //         method: "GET",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     );
+  //     const data = await res.json();
+  //     const active = data.filter(
+  //       (member: BoardMember) => member.status === true
+  //     );
+  //     const activeWithRoles = active.map((member: BoardMember) => ({
+  //       ...member,
+  //       keyRolesAndExpertise: member.keyRolesAndExpertise ?? [],
+  //     }));
+  //     setBoardMembers(activeWithRoles);
+  //     setFilteredMembers(activeWithRoles);
+
+  //     const uniqueRegions = Array.from(
+  //       new Set(activeWithRoles.map((m: BoardMember) => m.region))
+  //     ) as string[];
+  //     setRegions(["All", ...uniqueRegions]);
+  //     setRegions(["All", ...uniqueRegions]);
+  //   } catch (err) {
+  //     console.error("Failed to fetch board members", err);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
   const fetchBoardMembers = async () => {
     try {
       setLoading(true);
@@ -57,37 +95,46 @@ export default function Page() {
         }
       );
       const data = await res.json();
+  
       const active = data.filter(
         (member: BoardMember) => member.status === true
       );
-      const activeWithRoles = active.map((member: BoardMember) => ({
+  
+      // normalize region: use region if available, else fallback to country
+      const activeWithNormalizedLocation = active.map((member: BoardMember) => ({
         ...member,
         keyRolesAndExpertise: member.keyRolesAndExpertise ?? [],
+        location: member.region || member.country || "Unknown",
       }));
-      setBoardMembers(activeWithRoles);
-      setFilteredMembers(activeWithRoles);
+  
+      setBoardMembers(activeWithNormalizedLocation);
+      setFilteredMembers(activeWithNormalizedLocation);
 
-      const uniqueRegions = Array.from(
-        new Set(activeWithRoles.map((m: BoardMember) => m.region))
+      const uniqueLocations = Array.from(
+        new Set(
+          activeWithNormalizedLocation.map(
+            (m: BoardMember) => m.location
+          )
+        )
       ) as string[];
-      setRegions(["All", ...uniqueRegions]);
-      setRegions(["All", ...uniqueRegions]);
+
+      setRegions(["All", ...uniqueLocations]);
     } catch (err) {
       console.error("Failed to fetch board members", err);
     } finally {
       setLoading(false);
     }
   };
-
+  
   const handleRegionChange = (region: string) => {
     setActiveRegion(region);
     if (region === "All") {
       setFilteredMembers(boardMembers);
     } else {
-      setFilteredMembers(boardMembers.filter((m) => m.region === region));
+      setFilteredMembers(boardMembers.filter((m) => m.location === region));
     }
   };
-
+  
   useEffect(() => {
     fetchBoardMembers();
   }, []);
@@ -121,11 +168,10 @@ export default function Page() {
                   <button
                     key={region}
                     onClick={() => handleRegionChange(region)}
-                    className={`w-full px-6 py-3 mb-6 font-medium text-lg rounded-lg transition-colors duration-200 ${
-                      activeRegion === region
-                        ? "bg-blue-600 text-white"
-                        : "bg-primary text-white hover:bg-blue-500"
-                    }`}
+                    className={`w-full px-6 py-3 mb-6 font-medium text-lg rounded-lg transition-colors duration-200 ${activeRegion === region
+                      ? "bg-blue-600 text-white"
+                      : "bg-primary text-white hover:bg-blue-500"
+                      }`}
                   >
                     {region}
                   </button>
@@ -192,6 +238,16 @@ const BoardMemberCard = ({ member, onClick }: BoardMemberCardProps) => (
     <div className="p-6">
       <h3 className="text-xl font-bold text-blue-900">{member.name}</h3>
       <p className="text-blue-800 mb-1">{member.designation}</p>
+      {member?.country && (
+        <div className="mt-2">
+          <strong>Region:</strong> {member.country}
+        </div>
+      )}
+      {member?.phone && (
+        <div className="mt-2">
+          <strong>Region:</strong> {member.phone}
+        </div>
+      )}
       <p className="text-orange-500 text-sm mb-4">{member.region}</p>
       <p className="text-gray-700 max-h-40 overflow-auto text-sm custom-scroll">
         {member.about}

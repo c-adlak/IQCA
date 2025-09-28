@@ -6,6 +6,8 @@ import { useAuth } from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 
 type BoardMember = {
+    phone: any;
+    country: any;
     _id: string;
     name: string;
     photo: string;
@@ -62,11 +64,10 @@ export const AdminDashboard = () => {
     const [eventsLoading, setEventsLoading] = useState(false);
     const [eventForm, setEventForm] = useState<{
         name: string;
-        description: string;
         date: string;
         imageFile: File | null;
         pdfFile: string;
-    }>({ name: "", description: "", date: "", imageFile: null, pdfFile: "" });
+    }>({ name: "", date: "", imageFile: null, pdfFile: "" });
     const [editingEventId, setEditingEventId] = useState<string | null>(null);
 
     // Load data when tab changes
@@ -315,7 +316,6 @@ export const AdminDashboard = () => {
             const token = localStorage.getItem("token");
             const formData = new FormData();
             formData.append("name", eventForm.name);
-            formData.append("description", eventForm.description);
             formData.append("date", eventForm.date);
             if (eventForm.imageFile) formData.append("image", eventForm.imageFile);
             formData.append("pdf", eventForm.pdfFile);
@@ -342,7 +342,7 @@ export const AdminDashboard = () => {
 
             toast.success(editingEventId ? "Event updated" : "Event created");
 
-            setEventForm({ name: "", description: "", date: "", imageFile: null, pdfFile: "" });
+            setEventForm({ name: "", date: "", imageFile: null, pdfFile: "" });
             setEditingEventId(null);
             getEvents();
         } catch (err) {
@@ -354,7 +354,6 @@ export const AdminDashboard = () => {
         setEditingEventId(ev._id);
         setEventForm({
             name: ev.name || "",
-            description: ev.description || "",
             date: ev.date ? ev.date.substring(0, 10) : "",
             imageFile: null,
             pdfFile: ev.pdf || "",
@@ -408,7 +407,7 @@ export const AdminDashboard = () => {
                         }`}
                     onClick={() => setActiveTab("events")}
                 >
-                    Events
+                    Magazine
                 </button>
             </div>
 
@@ -425,41 +424,65 @@ export const AdminDashboard = () => {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                             {boardMembers.map((member) => (
                                 <div
-                                    key={member._id}
+                                    key={member?._id}
                                     className="bg-white rounded-xl shadow-lg p-6 border border-gray-200"
                                 >
                                     <img
                                         src={
-                                            member.photo.startsWith("http")
+                                            member?.photo?.startsWith("http")
                                                 ? member.photo
-                                                : `${API_BASE_URL}${member.photo}`
+                                                : member?.photo
+                                                    ? `${API_BASE_URL}${member.photo}`
+                                                    : "/default-avatar.png" // fallback image
                                         }
-                                        alt={member.name}
+                                        alt={member?.name || "Member"}
                                         className="w-full h-48 object-cover rounded-md mb-4"
                                     />
-                                    <h2 className="text-xl font-semibold">{member.name}</h2>
-                                    <p className="text-sm text-gray-500">{member.designation}</p>
-                                    <div className="mt-2 text-gray-700 max-h-32 overflow-auto pr-2 custom-scroll">{member.about}</div>
-                                    <div className="mt-2">
-                                        <strong>Region:</strong> {member.region}
-                                    </div>
-                                    <div className="mt-2">
-                                        <strong>Key Roles:</strong>
-                                        <ul className="list-disc list-inside text-sm text-gray-600">
-                                            {member.keyRolesAndExpertise.map((role, index) => (
-                                                <li key={index}>{role}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
+                                    <h2 className="text-xl font-semibold">
+                                        {member?.name || "Unnamed"}
+                                    </h2>
+                                    <p className="text-sm text-gray-500">
+                                        {member?.designation || "No designation"}
+                                    </p>
+                                    {member?.about && (
+                                        <div className="mt-2 text-gray-700 max-h-32 overflow-auto pr-2 custom-scroll">
+                                            {member.about}
+                                        </div>
+                                    )}
+                                    {member?.region && (
+                                        <div className="mt-2">
+                                            <strong>Region:</strong> {member.region}
+                                        </div>
+                                    )}
+                                      {member?.country && (
+                                        <div className="mt-2">
+                                            <strong>Region:</strong> {member.country}
+                                        </div>
+                                    )}
+                                    {member?.phone && (
+                                        <div className="mt-2">
+                                            <strong>Region:</strong> {member.phone}
+                                        </div>
+                                    )}
+                                    {member?.keyRolesAndExpertise?.length > 0 && (
+                                        <div className="mt-2">
+                                            <strong>Key Roles:</strong>
+                                            <ul className="list-disc list-inside text-sm text-gray-600">
+                                                {member.keyRolesAndExpertise.map((role, index) => (
+                                                    <li key={index}>{role}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
                                     <div className="mt-4 flex gap-4">
                                         <button
-                                            onClick={() => handleAccept(member._id)}
+                                            onClick={() => handleAccept(member?._id)}
                                             className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
                                         >
                                             Accept
                                         </button>
                                         <button
-                                            onClick={() => handleReject(member._id)}
+                                            onClick={() => handleReject(member?._id)}
                                             className="px-4 py-2 border border-black text-black rounded hover:bg-black hover:text-white transition"
                                         >
                                             Reject
@@ -471,6 +494,7 @@ export const AdminDashboard = () => {
                     )}
                 </div>
             )}
+
 
             {activeTab === "courses" && (
                 <div>
@@ -544,7 +568,7 @@ export const AdminDashboard = () => {
                                     <p className="text-sm text-gray-600">{c.category} • {c.duration}</p>
                                     <p className="mt-2 text-sm text-gray-700 max-h-24 overflow-auto">{c.description}</p>
                                     <div className="mt-4 flex gap-3">
-                                        <button className="px-3 py-1 border rounded" onClick={() => editCourse(c)}>Edit</button>
+                                        {/* <button className="px-3 py-1 border rounded" onClick={() => editCourse(c)}>Edit</button> */}
                                         <button className="px-3 py-1 bg-red-600 text-white rounded" onClick={() => deleteCourse(c._id)}>Delete</button>
                                     </div>
                                 </div>
@@ -585,13 +609,6 @@ export const AdminDashboard = () => {
                                 value={eventForm.pdfFile || ""}
                                 onChange={(e) => setEventForm({ ...eventForm, pdfFile: e.target.value })}
                             />
-                            <textarea
-                                className="border rounded px-3 py-2 md:col-span-2"
-                                placeholder="Description"
-                                value={eventForm.description}
-                                onChange={(e) => setEventForm({ ...eventForm, description: e.target.value })}
-                                required
-                            />
                         </div>
                         <div className="mt-4 flex gap-3">
                             <button type="submit" className="px-4 py-2 bg-black text-white rounded">
@@ -602,7 +619,7 @@ export const AdminDashboard = () => {
                                     type="button"
                                     onClick={() => {
                                         setEditingEventId(null);
-                                        setEventForm({ name: "", description: "", date: "", imageFile: null, pdfFile: "" });
+                                        setEventForm({ name: "", date: "", imageFile: null, pdfFile: "" });
                                     }}
                                     className="px-4 py-2 border rounded"
                                 >
@@ -626,7 +643,7 @@ export const AdminDashboard = () => {
                                     <p className="text-sm text-gray-600">{ev.date ? new Date(ev.date).toLocaleDateString() : ""}</p>
                                     <p className="mt-2 text-sm text-gray-700 max-h-24 overflow-auto">{ev.description}</p>
                                     <div className="mt-4 flex gap-3">
-                                        <button className="px-3 py-1 border rounded" onClick={() => editEvent(ev)}>Edit</button>
+                                        {/* <button className="px-3 py-1 border rounded" onClick={() => editEvent(ev)}>Edit</button> */}
                                         <button className="px-3 py-1 bg-red-600 text-white rounded" onClick={() => deleteEvent(ev._id)}>Delete</button>
                                         {ev.pdf && (
                                             <a className="px-3 py-1 border rounded" href={ev.pdf} target="_blank" rel="noreferrer">PDF</a>
