@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import AosProvider from "@/components/providers/AosProvider";
 import { Toaster } from "react-hot-toast";
 import Chatbot from "@/components/layout/chatbot";
+import { AuthProvider } from "../hooks/useAuth";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -33,15 +34,17 @@ export default function RootLayout({
         />
       </head>
       <body className={`${poppins.variable} font-poppins bg-white`}>
-        <AosProvider>
-          <Header />
-          <main>
-            {children}
-            <Chatbot />
-            <Toaster position="top-right" />
-          </main>
-          <Footer />
-        </AosProvider>
+        <AuthProvider>
+          <AosProvider>
+            <Header />
+            <main>
+              {children}
+              <Chatbot />
+              <Toaster position="top-right" />
+            </main>
+            <Footer />
+          </AosProvider>
+        </AuthProvider>
       </body>
     </html>
   );

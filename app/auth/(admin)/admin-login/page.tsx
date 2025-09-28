@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/hooks/useAuth";
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL || "https://iqca-backend.onrender.com";
 const LoginPage = () => {
@@ -12,6 +13,7 @@ const LoginPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
+  const { login } = useAuth();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -37,9 +39,8 @@ const LoginPage = () => {
       const data = await response.json();
 
       if (response.ok) {
-        // Store token in localStorage or cookies
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify(data.user));
+        // Use the auth context to login
+        login(data.user, data.token);
 
         // Redirect to dashboard
         router.push("/dashboard");

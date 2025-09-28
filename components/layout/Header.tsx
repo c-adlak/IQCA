@@ -1,61 +1,36 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "../../hooks/useAuth";
+
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [user, setUser] = useState<{ username: string; role: string } | null>(
-    null
-  );
+  const { user, isAuthenticated } = useAuth();
   const router = useRouter();
   const [loginOption, setLoginOption] = useState("");
+
   const handleLoginRedirect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
     setLoginOption(value);
+    /*
     if (value === "student") {
-      router.push("/auth/student-login");
-    } else if (value === "admin") {
+      router.push("/auth/student-login"); // student login removed
+    } else 
+    */
+    if (value === "admin") {
       router.push("/auth/admin-login");
     }
   };
 
-  useEffect(() => {
-    const getUserFromStorage = () => {
-      const storedUser = localStorage.getItem("user");
-      if (storedUser) {
-        try {
-          const parsedUser = JSON.parse(storedUser);
-          setUser(parsedUser);
-        } catch (error) {
-          console.error("Error parsing user data:", error);
-          localStorage.removeItem("user");
-        }
-      } else {
-        setUser(null);
-      }
-    };
-
-    getUserFromStorage();
-    const onStorageChange = () => {
-      getUserFromStorage();
-    };
-
-    window.addEventListener("storage", onStorageChange);
-    return () => {
-      window.removeEventListener("storage", onStorageChange);
-    };
-  }, []);
 
   const [mobileIqbizOpen, setMobileIqbizOpen] = useState(false);
 
   return (
-    <header
-      className={`sticky top-0 left-0 right-0 bg-white z-50 transition-all duration-300 "
-      }`}
-    >
+    <header className={`sticky top-0 left-0 right-0 bg-white z-50 transition-all duration-300 "`}>
       <div className="container mx-auto px-4 flex items-center justify-between">
         <Link href="/" className="inline-block">
           <Image
@@ -79,7 +54,7 @@ export default function Header() {
           >
             Career
           </Link>
-          {user?.role && (
+          {isAuthenticated && (
             <Link
               href="/dashboard"
               className="text-gray-800 hover:text-primary hover:font-semibold transform hover:scale-105 transition-all duration-300 font-medium nav-link"
@@ -88,7 +63,6 @@ export default function Header() {
               Dashboard
             </Link>
           )}
-
           <Link
             href="/about"
             className="text-gray-800 hover:text-primary hover:font-semibold transform hover:scale-105 transition-all duration-300 font-medium nav-link"
@@ -130,9 +104,8 @@ export default function Header() {
           >
             Short Courses
           </Link>
-          {/* Removed standalone Events link as it's now inside IQBIZ */}
-
         </nav>
+
         <div className="flex items-center space-x-4">
           <Link
             href="/#contact"
@@ -140,7 +113,8 @@ export default function Header() {
           >
             Book Consultation
           </Link>
-          {!user && (
+
+          {!isAuthenticated && (
             <select
               value={loginOption}
               onChange={handleLoginRedirect}
@@ -149,7 +123,9 @@ export default function Header() {
               <option value="" disabled>
                 Select Login
               </option>
-              <option value="student">Student Login</option>
+              {/*
+              <option value="student">Student Login</option> // student login removed
+              */}
               <option value="admin">Admin Login</option>
             </select>
           )}
@@ -183,7 +159,7 @@ export default function Header() {
           >
             Career
           </Link>
-          {user?.role && (
+          {isAuthenticated && (
             <Link
               href="/dashboard"
               className="text-gray-800 hover:text-primary hover:font-semibold transform hover:scale-105 transition-all duration-300 font-medium nav-link"
@@ -239,7 +215,6 @@ export default function Header() {
           >
             Short Courses
           </Link>
-          {/* Removed standalone Events link as it's now inside IQBIZ */}
 
           <Link
             href="/#contact"
