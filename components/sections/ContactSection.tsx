@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
+import { set } from "date-fns";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -13,6 +14,7 @@ export default function ContactSection() {
     message: "",
     newsletter: false,
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -30,7 +32,7 @@ export default function ContactSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+    setLoading(true);
     try {
       const response = await fetch(
         "https://iqca-backend.onrender.com/contact/send-email",
@@ -53,6 +55,7 @@ export default function ContactSection() {
           message: "",
           newsletter: false,
         });
+        setLoading(false);
       } else {
         toast.error("Failed to submit. Please try again later.");
       }
@@ -219,7 +222,7 @@ export default function ContactSection() {
                 type="submit"
                 className="w-full bg-primary text-white px-6 py-3 rounded-button font-medium transition-all duration-300 hover:bg-opacity-90 whitespace-nowrap"
               >
-                Submit Inquiry
+                {loading ? "Processing your Request..." : "Submit Inquiry"}
               </button>
             </form>
           </div>

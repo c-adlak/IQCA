@@ -22,11 +22,11 @@ const mockEvents: Event[] = [
     date: "2025-06-10",
   },
   {
-      id: 2,
-      name: "IQBiz Global Business and Investors Submmit 2025",
-      description: "Discover our upcoming summits and programs designed to fuel growth, investment, and global recognition. Click to view event details and register your spot.",
-      image: "/images/events/IQBiz-Global-Business.jpg",
-      date: "2026-12-15",
+    id: 2,
+    name: "IQBiz Global Business and Investors Submmit 2025",
+    description: "Discover our upcoming summits and programs designed to fuel growth, investment, and global recognition. Click to view event details and register your spot.",
+    image: "/images/events/IQBiz-Global-Business.jpg",
+    date: "2026-12-15",
   },
   // {
   //     id: 3,
@@ -44,19 +44,19 @@ export default function EventPage() {
   useEffect(() => {
     const today = new Date();
     today.setHours(0, 0, 0, 0); // Reset time to start of day for accurate comparison
-    
+
     const upcomingEvents = mockEvents.filter((event) => {
       const eventDate = new Date(event.date);
       eventDate.setHours(0, 0, 0, 0); // Reset time to start of day
       return eventDate >= today; // Include today's events as upcoming
     });
-    
+
     const pastEvents = mockEvents.filter((event) => {
       const eventDate = new Date(event.date);
       eventDate.setHours(0, 0, 0, 0); // Reset time to start of day
       return eventDate < today; // Only past events
     });
-    
+
     setUpcoming(upcomingEvents);
     setPast(pastEvents);
   }, []);
@@ -105,7 +105,7 @@ export default function EventPage() {
       )}
 
       <EventPhotoGrid />
-    
+
 
       {past.length >= 1 && (
         <section>

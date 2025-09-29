@@ -13,24 +13,65 @@ import {
   Twitter,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 const AboutUsPage = () => {
   const [formData, setFormData] = useState({
-    fullName: "",
+    name: "",
     email: "",
-    subject: "",
+    phone: "",
+    interest: "",
     message: "",
+    newsletter: false,
   });
+  const [loading, setLoading] = useState(false);
 
-  const handleChange = (e: { target: { name: string; value: string } }) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: checked }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
+    try {
+      const response = await fetch(
+        "https://iqca-backend.onrender.com/contact/send-email",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      if (response.ok) {
+        toast.success("Thank you for your inquiry!");
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          interest: "",
+          message: "",
+          newsletter: false,
+        });
+        setLoading(false);
+      } else {
+        toast.error("Failed to submit. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      toast.error("An error occurred. Please try again.");
+    }
   };
   const router = useRouter();
 
@@ -116,7 +157,9 @@ const AboutUsPage = () => {
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-bold text-[#bf9c56] mb-2">Excellence</h3>
+            <h3 className="text-xl font-bold text-[#bf9c56] mb-2">
+              Excellence
+            </h3>
             <p className="text-gray-700">
               We are dedicated to every course we deliver, ensuring the highest
               standards of educational quality and professional relevance.
@@ -141,7 +184,9 @@ const AboutUsPage = () => {
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-bold text-[#bf9c56] mb-2">Innovation</h3>
+            <h3 className="text-xl font-bold text-[#bf9c56] mb-2">
+              Innovation
+            </h3>
             <p className="text-gray-700">
               We continuously explore new teaching methodologies and create
               content to reflect the latest industry developments and best
@@ -620,79 +665,134 @@ const AboutUsPage = () => {
                 Send Us a Message
               </h2>
 
-              <div className="space-y-4">
-                <div>
+              <form onSubmit={handleSubmit}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <div>
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
+                      Full Name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
+                      placeholder="John Smith"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
+                      placeholder="john@example.com"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="mb-6">
                   <label
-                    htmlFor="fullName"
-                    className="block text-gray-700 mb-2"
+                    htmlFor="phone"
+                    className="block text-sm font-medium text-gray-700 mb-2"
                   >
-                    Full Name
+                    Phone Number
                   </label>
                   <input
-                    type="text"
-                    id="fullName"
-                    name="fullName"
-                    placeholder="Your name"
-                    className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    value={formData.fullName}
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
                     onChange={handleChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
+                    placeholder="+1 (555) 123-4567"
                   />
                 </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-gray-700 mb-2">
-                    Email Address
+                <div className="mb-6">
+                  <label
+                    htmlFor="interest"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
+                    Area of Interest
                   </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="Your email"
-                    className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    value={formData.email}
-                    onChange={handleChange}
-                  />
+                  <div className="relative">
+                    <select
+                      id="interest"
+                      name="interest"
+                      value={formData.interest}
+                      onChange={handleChange}
+                      className="w-full px-4 py-2 border border-gray-300 rounded appearance-none focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary pr-8"
+                      required
+                    >
+                      <option value="" disabled>
+                        Select your area of interest
+                      </option>
+                      <option value="finance">Finance</option>
+                      <option value="health">Health & Safety</option>
+                      <option value="environmental">
+                        Environmental Safety
+                      </option>
+                      <option value="engineering">Engineering</option>
+                      <option value="it">IT</option>
+                      <option value="other">Other</option>
+                    </select>
+                    <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-gray-500">
+                      <i className="ri-arrow-down-s-line"></i>
+                    </div>
+                  </div>
                 </div>
-
-                <div>
-                  <label htmlFor="subject" className="block text-gray-700 mb-2">
-                    Subject
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    placeholder="Message subject"
-                    className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    value={formData.subject}
-                    onChange={handleChange}
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-gray-700 mb-2">
-                    Message
+                <div className="mb-6">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
+                    Your Message
                   </label>
                   <textarea
                     id="message"
                     name="message"
-                    placeholder="Your message"
-                    rows={5}
-                    className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                     value={formData.message}
                     onChange={handleChange}
+                    rows={4}
+                    className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
+                    placeholder="Tell us about your training needs..."
                   ></textarea>
                 </div>
-
-                <div className="pt-2">
-                  <button
-                    onClick={handleSubmit}
-                    className="w-full bg-blue-800 text-white py-3 px-6 rounded font-medium hover:bg-blue-700 transition duration-200"
-                  >
-                    Send Message
-                  </button>
+                <div className="mb-6">
+                  <label className="flex items-center">
+                    <input
+                      type="checkbox"
+                      name="newsletter"
+                      checked={formData.newsletter}
+                      onChange={handleCheckboxChange}
+                      className="mr-2"
+                    />
+                    <span className="text-sm text-gray-700">
+                      I agree to receive communications about courses and
+                      promotions
+                    </span>
+                  </label>
                 </div>
-              </div>
+                <button
+                  type="submit"
+                  className="w-full bg-primary text-white px-6 py-3 rounded-button font-medium transition-all duration-300 hover:bg-opacity-90 whitespace-nowrap"
+                >
+                  {loading ? "Processing your Request..." : "Submit Inquiry"}
+                </button>
+              </form>
             </div>
           </div>
         </div>

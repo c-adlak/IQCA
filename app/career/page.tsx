@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState } from "react";
 
@@ -16,7 +15,9 @@ const CareerPage = () => {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value, files } = e.target as HTMLInputElement;
     if (name === "resume" && files && files.length > 0) {
       setForm((prev) => ({ ...prev, resume: files[0] }));
@@ -39,7 +40,7 @@ const CareerPage = () => {
       formData.append("message", form.message);
 
       // Change the URL below if your backend runs elsewhere
-      const response = await fetch("/career/apply", {
+      const response = await fetch("http://localhost:5000/career/apply", {
         method: "POST",
         body: formData,
       });
@@ -62,14 +63,24 @@ const CareerPage = () => {
         <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-blue-900 rounded-full p-4 shadow-lg">
           <Briefcase className="text-white w-10 h-10" />
         </div>
-        <h1 className="text-4xl font-extrabold mb-2 text-blue-900 text-center mt-6">Career Application</h1>
+        <h1 className="text-4xl font-extrabold mb-2 text-blue-900 text-center mt-6">
+          Career Application
+        </h1>
         <p className="mb-8 text-gray-600 text-center text-lg">
-          Apply for jobs or internships, upload your resume, and manage your application.
+          Apply for jobs or internships, upload your resume, and manage your
+          application.
         </p>
-        <form onSubmit={handleSubmit} className="space-y-6" encType="multipart/form-data">
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-6"
+          encType="multipart/form-data"
+        >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="relative">
-              <label className="text-gray-700 mb-1 font-semibold flex items-center gap-2"><User className="w-4 h-4 text-blue-700" />Full Name</label>
+              <label className="text-gray-700 mb-1 font-semibold flex items-center gap-2">
+                <User className="w-4 h-4 text-blue-700" />
+                Full Name
+              </label>
               <input
                 type="text"
                 name="name"
@@ -81,7 +92,10 @@ const CareerPage = () => {
               />
             </div>
             <div className="relative">
-              <label className="text-gray-700 mb-1 font-semibold flex items-center gap-2"><Mail className="w-4 h-4 text-blue-700" />Email</label>
+              <label className="text-gray-700 mb-1 font-semibold flex items-center gap-2">
+                <Mail className="w-4 h-4 text-blue-700" />
+                Email
+              </label>
               <input
                 type="email"
                 name="email"
@@ -93,7 +107,10 @@ const CareerPage = () => {
               />
             </div>
             <div className="relative md:col-span-2">
-              <label className="text-gray-700 mb-1 font-semibold flex items-center gap-2"><FileText className="w-4 h-4 text-blue-700" />Position Applied For</label>
+              <label className="text-gray-700 mb-1 font-semibold flex items-center gap-2">
+                <FileText className="w-4 h-4 text-blue-700" />
+                Position Applied For
+              </label>
               <input
                 type="text"
                 name="position"
@@ -105,7 +122,10 @@ const CareerPage = () => {
               />
             </div>
             <div className="relative md:col-span-2">
-              <label className="text-gray-700 mb-1 font-semibold flex items-center gap-2"><FileText className="w-4 h-4 text-blue-700" />Resume (PDF/DOC)</label>
+              <label className="text-gray-700 mb-1 font-semibold flex items-center gap-2">
+                <FileText className="w-4 h-4 text-blue-700" />
+                Resume (PDF/DOC)
+              </label>
               <input
                 type="file"
                 name="resume"
@@ -116,7 +136,10 @@ const CareerPage = () => {
               />
             </div>
             <div className="relative md:col-span-2">
-              <label className="text-gray-700 mb-1 font-semibold flex items-center gap-2"><Send className="w-4 h-4 text-blue-700" />Message (optional)</label>
+              <label className="text-gray-700 mb-1 font-semibold flex items-center gap-2">
+                <Send className="w-4 h-4 text-blue-700" />
+                Message (optional)
+              </label>
               <textarea
                 name="message"
                 value={form.message}
@@ -134,7 +157,26 @@ const CareerPage = () => {
           >
             {submitting ? (
               <>
-                <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg>
+                <svg
+                  className="animate-spin h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v8z"
+                  ></path>
+                </svg>
                 Submitting...
               </>
             ) : (
@@ -144,8 +186,16 @@ const CareerPage = () => {
               </>
             )}
           </button>
-          {success && <p className="text-green-600 mt-4 text-center font-semibold">{success}</p>}
-          {error && <p className="text-red-600 mt-4 text-center font-semibold">{error}</p>}
+          {success && (
+            <p className="text-green-600 mt-4 text-center font-semibold">
+              {success}
+            </p>
+          )}
+          {error && (
+            <p className="text-red-600 mt-4 text-center font-semibold">
+              {error}
+            </p>
+          )}
         </form>
       </div>
     </div>
