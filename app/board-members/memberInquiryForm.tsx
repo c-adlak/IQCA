@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Loading from "./Loading";
+import toast from "react-hot-toast";
 
 const MemberInquiryForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -76,7 +77,8 @@ const MemberInquiryForm: React.FC = () => {
 
       if (!response.ok) throw new Error("Network response was not ok");
       await response.json();
-      alert("Inquiry submitted successfully!");
+      toast.success("Request accepted successfully!");
+      setLoading(false);
       setFormData({
         name: "",
         email: "",
@@ -88,7 +90,7 @@ const MemberInquiryForm: React.FC = () => {
       setErrors({});
     } catch (error) {
       console.error("Upload error:", error);
-      alert("Failed to submit the form.");
+      toast.error("Failed to fetch board members.");
     } finally {
       setLoading(false);
     }
