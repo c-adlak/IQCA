@@ -101,7 +101,7 @@ const AboutUsPage = () => {
             <div className="flex space-x-4">
               <button
                 onClick={goToCourses}
-                className="bg-blue-900 text-white px-6 py-2 rounded-md hover:bg-blue-800 transition"
+                className="bg-[#dbbd80] text-white px-6 py-2 rounded-md hover:bg-blue-800 transition"
               >
                 Our Courses
               </button>
@@ -141,7 +141,7 @@ const AboutUsPage = () => {
         <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Excellence */}
           <div className="bg-white p-8 rounded-lg shadow-sm">
-            <div className="text-blue-900 mb-4">
+            <div className="text-[#dbbd80] mb-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-10 w-10"
@@ -168,7 +168,7 @@ const AboutUsPage = () => {
 
           {/* Innovation */}
           <div className="bg-white p-8 rounded-lg shadow-sm">
-            <div className="text-blue-900 mb-4">
+            <div className="text-[#dbbd80] mb-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-10 w-10"
@@ -196,7 +196,7 @@ const AboutUsPage = () => {
 
           {/* Community */}
           <div className="bg-white p-8 rounded-lg shadow-sm">
-            <div className="text-blue-900 mb-4">
+            <div className="text-[#dbbd80] mb-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-10 w-10"
@@ -601,8 +601,8 @@ const AboutUsPage = () => {
               </p>
 
               <div className="space-y-6">
-                <div className="flex items-start">
-                  <MapPin className="mr-3 mt-1 flex-shrink-0" size={20} />
+              <div className="flex items-start">
+                <MapPin className="mr-3 mt-1 flex-shrink-0 text-[#dbbd80]" size={20} />
                   <div>
                     <h3 className="font-semibold mb-1">Visit Us</h3>
                     <p>123 Education Avenue</p>
@@ -611,16 +611,16 @@ const AboutUsPage = () => {
                   </div>
                 </div>
 
-                <div className="flex items-start">
-                  <Phone className="mr-3 mt-1 flex-shrink-0" size={20} />
+              <div className="flex items-start">
+                <Phone className="mr-3 mt-1 flex-shrink-0 text-[#dbbd80]" size={20} />
                   <div>
                     <h3 className="font-semibold mb-1">Call Us</h3>
                     <p>+44 (0) 20 1234 5678</p>
                   </div>
                 </div>
 
-                <div className="flex items-start">
-                  <Mail className="mr-3 mt-1 flex-shrink-0" size={20} />
+              <div className="flex items-start">
+                <Mail className="mr-3 mt-1 flex-shrink-0 text-[#dbbd80]" size={20} />
                   <div>
                     <h3 className="font-semibold mb-1">Email Us</h3>
                     <p>info@iqca-education.com</p>
