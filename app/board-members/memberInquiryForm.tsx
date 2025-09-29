@@ -139,8 +139,8 @@ const MemberInquiryForm: React.FC = () => {
           <input
             type="file"
             name="photo"
+            placeholder="Upload Photo (optional)"
             accept="image/*"
-            required
             onChange={handleChange}
             className="w-full p-3 text-sm rounded-lg border border-gray-300 bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
           />
