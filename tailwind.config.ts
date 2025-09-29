@@ -120,7 +120,7 @@ const config: Config = {
   },
   plugins: [
     require('tailwindcss-animate'),
-    function({ addUtilities }) {
+    function({ addUtilities }: { addUtilities: (utils: Record<string, any>) => void }) {
       addUtilities({
         '.btn-primary': {
           'background-color': '#243A74',
