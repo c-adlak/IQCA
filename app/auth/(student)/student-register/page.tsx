@@ -65,7 +65,7 @@ const RegisterPage = () => {
       if (response.ok) {
         setSuccess("Registration successful! Redirecting to login...");
         setTimeout(() => {
-          router.push("/student/login");
+          router.push("/auth/student-login");
         }, 2000);
       } else {
         setError(data.error || "Registration failed");

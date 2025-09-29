@@ -16,11 +16,10 @@ export default function Header() {
   const handleLoginRedirect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
     setLoginOption(value);
-    /*
+  
     if (value === "student") {
       router.push("/auth/student-login"); // student login removed
-    } else 
-    */
+    }
     if (value === "admin") {
       router.push("/auth/admin-login");
     }
@@ -123,9 +122,9 @@ export default function Header() {
               <option value="" disabled>
                 Select Login
               </option>
-              {/*
-              <option value="student">Student Login</option> // student login removed
-              */}
+              
+              <option value="student">Student Login</option> 
+             
               <option value="admin">Admin Login</option>
             </select>
           )}
