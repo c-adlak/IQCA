@@ -441,7 +441,7 @@ export const AdminDashboard = () => {
   ) => {
     try {
       const res = await fetch(
-        `http://localhost:5000/career/applications/${id}/status`,
+        `https://iqca-backend.onrender.com/career/applications/${id}/status`,
         {
           method: "PATCH",
           headers: {
@@ -463,7 +463,7 @@ export const AdminDashboard = () => {
     if (!confirm("Delete this application?")) return;
     try {
       const res = await fetch(
-        `http://localhost:5000/career/applications/${id}`,
+        `https://iqca-backend.onrender.com/career/applications/${id}`,
         {
           method: "DELETE",
         }
