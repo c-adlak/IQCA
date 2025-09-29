@@ -134,7 +134,7 @@
   }
   .social-icon:hover {
     transform: translateY(-3px);
-    background-color: #243a74;
+    background-color: #dbbd80;
   }
 
   .quick-link {
@@ -191,6 +191,11 @@
     background-color: #243a74;
     border-color: #243a74;
   }
+  input[type="checkbox"]:checked:hover,
+  input[type="radio"]:checked:hover {
+    background-color: #dbbd80;
+    border-color: #dbbd80;
+  }
   input[type="checkbox"]:checked::before {
     content: "✓";
     color: white;
@@ -243,6 +248,9 @@
   input:checked + .switch-slider {
     background-color: #243a74;
   }
+  input:checked + .switch-slider:hover {
+    background-color: #dbbd80;
+  }
   input:checked + .switch-slider:before {
     transform: translateX(26px);
   }
@@ -263,6 +271,10 @@
     background: #243a74;
     border-radius: 50%;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  input[type="range"]::-webkit-slider-thumb:hover {
+    background: #dbbd80;
   }
   input[type="range"]::-moz-range-thumb {
     width: 20px;
@@ -271,6 +283,10 @@
     border-radius: 50%;
     cursor: pointer;
     border: none;
+    transition: background-color 0.3s ease;
+  }
+  input[type="range"]::-moz-range-thumb:hover {
+    background: #dbbd80;
   }
 
   input[type="number"]::-webkit-inner-spin-button,
@@ -294,6 +310,64 @@
   -ms-overflow-style: none; /* IE and Edge */
 }
 
-.custom-scroll::-webkit-scrollbar-thumb {
-  background: transparent;
-}
+  .custom-scroll::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+
+  /* Custom dual-color utilities */
+  .btn-primary {
+    background-color: #243a74;
+    color: white;
+    transition: all 0.3s ease;
+  }
+  .btn-primary:hover {
+    background-color: #dbbd80;
+    color: white;
+  }
+
+  .btn-primary-outline {
+    background-color: transparent;
+    color: #243a74;
+    border: 2px solid #243a74;
+    transition: all 0.3s ease;
+  }
+  .btn-primary-outline:hover {
+    background-color: #dbbd80;
+    color: white;
+    border-color: #dbbd80;
+  }
+
+  .text-primary {
+    color: #243a74;
+  }
+  .text-primary:hover {
+    color: #dbbd80;
+  }
+
+  .border-primary {
+    border-color: #243a74;
+  }
+  .border-primary:hover {
+    border-color: #dbbd80;
+  }
+
+  .bg-primary {
+    background-color: #243a74;
+  }
+  .bg-primary:hover {
+    background-color: #dbbd80;
+  }
+
+  /* Icons: default all app icons to golden */
+  .icon-primary {
+    color: #dbbd80;
+  }
+  /* Lucide (svg.lucide inherits currentColor for stroke) */
+  svg.lucide,
+  .lucide {
+    color: #dbbd80;
+  }
+  /* Remix Icon font */
+  .ri {
+    color: #dbbd80;
+  }

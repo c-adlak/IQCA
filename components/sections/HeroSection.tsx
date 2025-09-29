@@ -65,7 +65,7 @@ export default function HeroSection() {
             >
               <Link
                 href="#courses"
-                className="bg-primary text-white px-8 py-3 rounded-button font-medium transition-all duration-300 hover:bg-opacity-90 hover:translate-y-[-2px] whitespace-nowrap flex items-center group"
+                className="bg-[#dbbd80] text-white px-8 py-3 rounded-button font-medium transition-all duration-300 hover:bg-[#243A74] hover:translate-y-[-2px] whitespace-nowrap flex items-center group"
               >
                 Get Started
                 <i className="ri-arrow-right-line ml-2"></i>

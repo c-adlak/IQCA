@@ -10,7 +10,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: '#243A74',
+        primary: {
+          DEFAULT: '#243A74',
+          hover: '#dbbd80',
+        },
         secondary: '#E8EEF9',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
@@ -110,8 +113,37 @@ const config: Config = {
         'text-gradient': 'textGradient 3s linear infinite',
         'scroll': 'scroll 30s linear infinite',
       },
+      transitionProperty: {
+        'colors': 'background-color, border-color, color, fill, stroke',
+      },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [
+    require('tailwindcss-animate'),
+    function({ addUtilities }) {
+      addUtilities({
+        '.btn-primary': {
+          'background-color': '#243A74',
+          'color': 'white',
+          'transition': 'all 0.3s ease',
+          '&:hover': {
+            'background-color': '#dbbd80',
+            'color': 'white',
+          },
+        },
+        '.btn-primary-outline': {
+          'background-color': 'transparent',
+          'color': '#243A74',
+          'border': '2px solid #243A74',
+          'transition': 'all 0.3s ease',
+          '&:hover': {
+            'background-color': '#dbbd80',
+            'color': 'white',
+            'border-color': '#dbbd80',
+          },
+        },
+      })
+    }
+  ],
 };
 export default config;

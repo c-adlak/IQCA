@@ -169,7 +169,7 @@ export default function Page() {
                     key={region}
                     onClick={() => handleRegionChange(region)}
                     className={`w-full px-6 py-3 mb-6 font-medium text-lg rounded-lg transition-colors duration-200 ${activeRegion === region
-                      ? "bg-blue-600 text-white"
+                      ? "bg-[#dbbd80] text-white"
                       : "bg-primary text-white hover:bg-blue-500"
                       }`}
                   >
