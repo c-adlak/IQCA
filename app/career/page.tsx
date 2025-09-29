@@ -8,7 +8,7 @@ const CareerPage = () => {
     name: "",
     email: "",
     position: "",
-    resume: "", // now a string, not a File
+    resume: "",
     message: "",
   });
   const [submitting, setSubmitting] = useState(false);
