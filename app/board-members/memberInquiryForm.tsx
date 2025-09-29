@@ -27,13 +27,6 @@ const MemberInquiryForm: React.FC = () => {
       newErrors.country = "Country name is too short.";
     if (formData.about.trim().length < 10)
       newErrors.about = "About must be at least 10 characters.";
-    if (!formData.photo) {
-      newErrors.photo = "Please upload a photo.";
-    } else if (
-      !["image/jpeg", "image/png", "image/jpg"].includes(formData.photo.type)
-    ) {
-      newErrors.photo = "Photo must be an image (jpeg, jpg, png).";
-    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
