@@ -24,7 +24,8 @@ const mockEvents: Event[] = [
   {
     id: 2,
     name: "IQBiz Global Business and Investors Submmit 2025",
-    description: "Discover our upcoming summits and programs designed to fuel growth, investment, and global recognition. Click to view event details and register your spot.",
+    description:
+      "Discover our upcoming summits and programs designed to fuel growth, investment, and global recognition. Click to view event details and register your spot.",
     image: "/images/events/IQBiz-Global-Business.jpg",
     date: "2026-12-15",
   },
@@ -60,8 +61,8 @@ export default function EventPage() {
     setUpcoming(upcomingEvents);
     setPast(pastEvents);
   }, []);
-  console.log(upcoming, "upcoming")
-  console.log(past, "past")
+  console.log(upcoming, "upcoming");
+  console.log(past, "past");
   return (
     <div className="py-12 px-4 pt-32 md:px-10 bg-gray-50 text-gray-800">
       <div className="text-center mb-12">
@@ -105,7 +106,6 @@ export default function EventPage() {
       )}
 
       <EventPhotoGrid />
-
 
       {past.length >= 1 && (
         <section>
