@@ -418,12 +418,15 @@ export const AdminDashboard = () => {
   const getCareerApplications = async () => {
     setApplicationsLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/career/applications", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await fetch(
+        "https://iqca-backend.onrender.com/career/applications",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       if (!res.ok) throw new Error("Failed to fetch applications");
       const data = await res.json();
       setApplications(Array.isArray(data) ? data : []);

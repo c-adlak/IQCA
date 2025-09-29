@@ -5,8 +5,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
 import Link from "next/link";
 
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000";
+const API_BASE_URL = "https://iqca-backend.onrender.com";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -115,7 +114,7 @@ const LoginPage = () => {
           {" "}
           <Link href={"/auth/student-register"}>
             {" "}
-            If not registered please register
+            If not registered click here to register
           </Link>
         </p>
       </div>
