@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 
 import { Briefcase, FileText, User, Mail, Send, Link } from "lucide-react";
+import toast from "react-hot-toast";
 
 const CareerPage = () => {
   const [form, setForm] = useState({
@@ -49,9 +50,12 @@ const CareerPage = () => {
         const data = await response.json();
         throw new Error(data.error || "Submission failed");
       }
+      toast.success("Request accepted successfully!");
       setSuccess("Application submitted successfully!");
+      setSubmitting(false);
       setForm({ name: "", email: "", position: "", resume: "", message: "" });
     } catch (err: any) {
+      toast.error("Failed to fetch board members.");
       setError(err.message || "Submission failed");
     } finally {
       setSubmitting(false);
