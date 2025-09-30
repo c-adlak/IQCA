@@ -7,14 +7,13 @@ import toast from "react-hot-toast";
 
 type BoardMember = {
   phone: any;
-  country: any;
+  country: string;
   _id: string;
   name: string;
   photo: string;
-  designation: string;
   about: string;
-  region: string;
-  keyRolesAndExpertise: string[];
+  email?: string;
+  status?: boolean;
 };
 
 type Course = {
@@ -46,7 +45,7 @@ type CareerApplication = {
   createdAt?: string;
 };
 
-const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL = "https://iqca-backend.onrender.com";
 // "http://localhost:5000" || "https://iqca-backend.onrender.com";
 
 export const AdminDashboard = () => {
@@ -59,6 +58,17 @@ export const AdminDashboard = () => {
   // Board Members state
   const [boardMembers, setBoardMembers] = useState<BoardMember[]>([]);
   const [boardLoading, setBoardLoading] = useState(false);
+  const [editingMemberId, setEditingMemberId] = useState<string | null>(null);
+  const [memberForm, setMemberForm] = useState<{
+    name: string;
+    email: string;
+    phone: string;
+    about: string;
+    country: string;
+    status: boolean;
+    photoFile: File | null;
+  }>({ name: "", email: "", phone: "", about: "", country: "", status: false, photoFile: null });
+  const [memberSaving, setMemberSaving] = useState(false);
 
   // Courses state
   const [courses, setCourses] = useState<Course[]>([]);
@@ -206,6 +216,78 @@ export const AdminDashboard = () => {
     } catch (err) {
       console.error("Reject error:", err);
       toast.error("An error occurred while rejecting the request.");
+    }
+  };
+
+  const startEditMember = (m: BoardMember) => {
+    setEditingMemberId(m._id);
+    setMemberForm({
+      name: m.name || "",
+      email: m.email || "",
+      phone: m.phone ? String(m.phone) : "",
+      about: m.about || "",
+      country: m.country || "",
+      status: Boolean(m.status),
+      photoFile: null,
+    });
+  };
+
+  const cancelEditMember = () => {
+    setEditingMemberId(null);
+    setMemberForm({ name: "", email: "", phone: "", about: "", country: "", status: false, photoFile: null });
+  };
+
+  const submitMember = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!editingMemberId) return;
+    try {
+      setMemberSaving(true);
+      const token = localStorage.getItem("token");
+      const formData = new FormData();
+      if (memberForm.name) formData.append("name", memberForm.name);
+      if (memberForm.email) formData.append("email", memberForm.email);
+      if (memberForm.phone) formData.append("phone", memberForm.phone);
+      if (memberForm.about) formData.append("about", memberForm.about);
+      if (memberForm.country) formData.append("country", memberForm.country);
+      formData.append("status", String(memberForm.status));
+      if (memberForm.photoFile) formData.append("photo", memberForm.photoFile);
+
+      const res = await fetch(
+        `${API_BASE_URL}/boardMembers/board-members/${editingMemberId}`,
+        {
+          method: "PATCH",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: formData,
+        }
+      );
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.error || "Update failed");
+      toast.success("Member updated");
+      // Update local state without full refetch
+      setBoardMembers((prev) =>
+        prev.map((bm) =>
+          bm._id === editingMemberId
+            ? {
+                ...bm,
+                name: memberForm.name,
+                email: memberForm.email,
+                phone: memberForm.phone,
+                about: memberForm.about,
+                country: memberForm.country,
+                status: memberForm.status,
+                photo: data?.member?.photo || bm.photo,
+              }
+            : bm
+        )
+      );
+      cancelEditMember();
+    } catch (err: any) {
+      console.error("Update member error:", err);
+      toast.error(err?.message || "Failed to update member");
+    } finally {
+      setMemberSaving(false);
     }
   };
 
@@ -521,6 +603,70 @@ export const AdminDashboard = () => {
 
       {activeTab === "members" && (
         <div>
+          {editingMemberId && (
+            <div className="mb-8">
+              <h2 className="text-2xl font-semibold mb-4">Edit Member</h2>
+              <form className="bg-white border rounded-xl p-6" onSubmit={submitMember}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <input
+                    className="border rounded px-3 py-2"
+                    placeholder="Name"
+                    value={memberForm.name}
+                    onChange={(e) => setMemberForm({ ...memberForm, name: e.target.value })}
+                    required
+                  />
+                  <input
+                    className="border rounded px-3 py-2"
+                    type="email"
+                    placeholder="Email"
+                    value={memberForm.email}
+                    onChange={(e) => setMemberForm({ ...memberForm, email: e.target.value })}
+                  />
+                  <input
+                    className="border rounded px-3 py-2"
+                    placeholder="Phone"
+                    value={memberForm.phone}
+                    onChange={(e) => setMemberForm({ ...memberForm, phone: e.target.value })}
+                  />
+                  <input
+                    className="border rounded px-3 py-2"
+                    placeholder="Country"
+                    value={memberForm.country}
+                    onChange={(e) => setMemberForm({ ...memberForm, country: e.target.value })}
+                    required
+                  />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    className="border rounded px-3 py-2"
+                    onChange={(e) => setMemberForm({ ...memberForm, photoFile: e.target.files?.[0] || null })}
+                  />
+                  <label className="flex items-center gap-2 text-sm">
+                    <input
+                      type="checkbox"
+                      checked={memberForm.status}
+                      onChange={(e) => setMemberForm({ ...memberForm, status: e.target.checked })}
+                    />
+                    Active
+                  </label>
+                  <textarea
+                    className="border rounded px-3 py-2 md:col-span-2"
+                    placeholder="About"
+                    value={memberForm.about}
+                    onChange={(e) => setMemberForm({ ...memberForm, about: e.target.value })}
+                  />
+                </div>
+                <div className="mt-4 flex gap-3">
+                  <button type="submit" className="px-4 py-2 bg-black text-white rounded" disabled={memberSaving}>
+                    {memberSaving ? "Saving..." : "Save"}
+                  </button>
+                  <button type="button" onClick={cancelEditMember} className="px-4 py-2 border rounded">
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+          )}
           {boardLoading ? (
             <div className="flex flex-col items-center justify-center py-12">
               <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-4"></div>
@@ -553,22 +699,14 @@ export const AdminDashboard = () => {
                   <h2 className="text-xl font-semibold">
                     {member?.name || "Unnamed"}
                   </h2>
-                  <p className="text-sm text-gray-500">
-                    {member?.designation || "No designation"}
-                  </p>
                   {member?.about && (
                     <div className="mt-2 text-gray-700 max-h-32 overflow-auto pr-2 custom-scroll">
                       {member.about}
                     </div>
                   )}
-                  {member?.region && (
-                    <div className="mt-2">
-                      <strong>Region:</strong> {member.region}
-                    </div>
-                  )}
                   {member?.country && (
                     <div className="mt-2">
-                      <strong>Region:</strong> {member.country}
+                      <strong>Country:</strong> {member.country}
                     </div>
                   )}
                   {member?.phone && (
@@ -576,17 +714,13 @@ export const AdminDashboard = () => {
                       <strong>Region:</strong> {member.phone}
                     </div>
                   )}
-                  {member?.keyRolesAndExpertise?.length > 0 && (
-                    <div className="mt-2">
-                      <strong>Key Roles:</strong>
-                      <ul className="list-disc list-inside text-sm text-gray-600">
-                        {member.keyRolesAndExpertise.map((role, index) => (
-                          <li key={index}>{role}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
                   <div className="mt-4 flex gap-4">
+                    <button
+                      onClick={() => startEditMember(member)}
+                      className="px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white transition"
+                    >
+                      Edit
+                    </button>
                     <button
                       onClick={() => handleAccept(member?._id)}
                       className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
