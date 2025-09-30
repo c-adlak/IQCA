@@ -3,8 +3,9 @@ import { useState } from "react";
 // import meetingImg from "";
 import Image from "next/image";
 import MeetingImg from "@/public/aboutPageImg/meetingImg.jpg";
-import Officeimg from "@/public/aboutPageImg/officeImg.jpg";
+import Officeimg from "../../public/aboutPageImg/officeimg.jpg";
 import {
+  Clock,
   Facebook,
   Instagram,
   Linkedin,
