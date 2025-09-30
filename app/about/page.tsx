@@ -12,7 +12,7 @@ import {
   Mail,
   MapPin,
   Phone,
-  Twitter,
+  X,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
@@ -658,25 +658,25 @@ const AboutUsPage = () => {
                   <h3 className="font-semibold mb-3">Follow Us</h3>
                   <div className="flex space-x-4">
                     <a
-                      href="#"
+                      href="https://share.google/pvselsP4ghLTeR6AW"
                       className="hover:text-blue-300 transition duration-200"
                     >
                       <Linkedin size={20} />
                     </a>
                     <a
-                      href="#"
+                      href="https://share.google/fDuNcpX1ikbFL1J77"
                       className="hover:text-blue-300 transition duration-200"
                     >
-                      <Twitter size={20} />
+                      <X size={20} />
                     </a>
                     <a
-                      href="#"
+                      href="https://www.facebook.com/share/1CzLfuXnsL/?mibextid=wwXIfr"
                       className="hover:text-blue-300 transition duration-200"
                     >
                       <Facebook size={20} />
                     </a>
                     <a
-                      href="#"
+                      href="https://share.google/aAIl86S3SbHVdeHO8"
                       className="hover:text-blue-300 transition duration-200"
                     >
                       <Instagram size={20} />
