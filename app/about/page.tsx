@@ -3,6 +3,7 @@ import { useState } from "react";
 // import meetingImg from "";
 import Image from "next/image";
 import MeetingImg from "@/public/aboutPageImg/meetingImg.jpg";
+import Officeimg from "@/public/aboutPageImg/officeImg.jpg";
 import {
   Facebook,
   Instagram,
@@ -227,7 +228,7 @@ const AboutUsPage = () => {
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-1/2 mb-8 md:mb-0">
               <Image
-                src={"./aboutPageImg/officeImg.jpg"}
+                src={Officeimg}
                 height={400}
                 width={600}
                 alt="IQCA Campus"
@@ -608,9 +609,14 @@ const AboutUsPage = () => {
                   />
                   <div>
                     <h3 className="font-semibold mb-1">Visit Us</h3>
-                    <p>123 Education Avenue</p>
-                    <p>London, EC1A 1BB</p>
-                    <p>United Kingdom</p>
+                    <p>
+                      <strong>West London:</strong> Suite 16, Bell View Court,
+                      Hanworth Road, London, England, TW3 3TT
+                    </p>
+                    <p>
+                      <strong>Central London:</strong> 167-169, Great Portland
+                      Street, London, United Kingdom, W1W 5PF
+                    </p>
                   </div>
                 </div>
 
@@ -621,7 +627,7 @@ const AboutUsPage = () => {
                   />
                   <div>
                     <h3 className="font-semibold mb-1">Call Us</h3>
-                    <p>+44 (0) 20 1234 5678</p>
+                    <p>0204111799</p>
                   </div>
                 </div>
 
@@ -632,7 +638,18 @@ const AboutUsPage = () => {
                   />
                   <div>
                     <h3 className="font-semibold mb-1">Email Us</h3>
-                    <p>info@iqca-education.com</p>
+                    <p>Support@iqcaboard.co.uk</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <Clock
+                    className="mr-3 mt-1 flex-shrink-0 text-[#dbbd80]"
+                    size={20}
+                  />
+                  <div>
+                    <h3 className="font-semibold mb-1">Office Hours</h3>
+                    <p>Mon - Fri: 9:00 AM - 5:00 PM</p>
                   </div>
                 </div>
 

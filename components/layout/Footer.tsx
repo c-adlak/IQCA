@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   Facebook,
-  Twitter,
+  X,
   Instagram,
   Linkedin,
   Youtube,
@@ -35,7 +35,7 @@ export default function Footer() {
             </p>
             <div className="flex space-x-4">
               <a
-                href="https://www.facebook.com"
+                href="https://www.facebook.com/share/1CzLfuXnsL/?mibextid=wwXIfr"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -44,16 +44,16 @@ export default function Footer() {
                 </div>
               </a>
               <a
-                href="https://x.com/i/flow/login?redirect_after_login=%2Fiqcaboard"
+                href="https://share.google/fDuNcpX1ikbFL1J77"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <div className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-white transition">
-                  <Twitter className="w-5 h-5" />
+                  <X className="w-5 h-5" />
                 </div>
               </a>
               <a
-                href="https://www.instagram.com/iqcaboard/"
+                href="https://share.google/aAIl86S3SbHVdeHO8"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -62,7 +62,7 @@ export default function Footer() {
                 </div>
               </a>
               <a
-                href="https://www.linkedin.com/company/iqcaboard?trk=feed-detail_main-feed-card_feed-actor-name "
+                href="https://share.google/pvselsP4ghLTeR6AW"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -71,7 +71,7 @@ export default function Footer() {
                 </div>
               </a>
               <a
-                href="https://www.youtube.com"
+                href="https://youtube.com/@iqcaboard?si=KPQJfDaRzGeMQ0pf"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -175,11 +175,13 @@ export default function Footer() {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-gray-400 mb-4">
-                    <strong className="text-gray-300">West London</strong> Suite 16, Bell view court, Hanworth road, London, England, TW3
-                    3TT
+                    <strong className="text-gray-300">West London</strong> Suite
+                    16, Bell view court, Hanworth road, London, England, TW3 3TT
                   </span>
                   <span className="text-gray-400">
-                    <strong className="text-gray-300">Central London</strong> 167-169, Great Portland Street, London, United Kingdom, W1W 5PF
+                    <strong className="text-gray-300">Central London</strong>{" "}
+                    167-169, Great Portland Street, London, United Kingdom, W1W
+                    5PF
                   </span>
                 </div>
               </li>
