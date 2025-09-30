@@ -46,7 +46,7 @@ type CareerApplication = {
   createdAt?: string;
 };
 
-const API_BASE_URL = "https://iqca-backend.onrender.com";
+const API_BASE_URL = "http://localhost:5000";
 // "http://localhost:5000" || "https://iqca-backend.onrender.com";
 
 export const AdminDashboard = () => {

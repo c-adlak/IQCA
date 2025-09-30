@@ -89,10 +89,10 @@ const AboutUsPage = () => {
         <div className="container mx-auto px-4 pt-8 pb-20 flex gap-8 flex-col md:flex-row items-center justify-between">
           <div className="md:w-1/2 mb-8 md:mb-0">
             <h1 className="text-3xl font-bold text-blue-900 mb-2">
-              About ICQA: Excellence in Professional Training
+              About IQCA: Excellence in Professional Training
             </h1>
             <p className="text-gray-700 mb-6">
-              Since 2015, ICQA has been at the forefront of professional
+              Since 2015, IQCA has been at the forefront of professional
               education, delivering CEU-accredited courses that transform
               careers and organizations. Our commitment to quality and industry
               relevance has made us a trusted partner for professionals seeking
@@ -118,7 +118,7 @@ const AboutUsPage = () => {
               src={MeetingImg}
               height={400}
               width={600}
-              alt="Team meeting at ICQA"
+              alt="Team meeting at IQCA"
               className="rounded-lg shadow-md w-full"
             />
           </div>
@@ -132,7 +132,7 @@ const AboutUsPage = () => {
             Our Mission & Values
           </h2>
           <p className="text-gray-700 max-w-3xl mx-auto">
-            At ICQA, we're driven by commitment to excellence in professional
+            At IQCA, we're driven by commitment to excellence in professional
             education. Our mission is to empower individuals and organizations
             through high-quality, industry-relevant training.
           </p>
@@ -230,7 +230,7 @@ const AboutUsPage = () => {
                 src={"./aboutPageImg/officeImg.jpg"}
                 height={400}
                 width={600}
-                alt="ICQA Campus"
+                alt="IQCA Campus"
                 className="rounded-lg shadow-md w-full"
               />
             </div>
@@ -239,7 +239,7 @@ const AboutUsPage = () => {
                 Our Story
               </h2>
               <p className="text-gray-700 mb-4">
-                Founded in 2015 by a team of industry experts, ICQA began with a
+                Founded in 2015 by a team of industry experts, IQCA began with a
                 single mission: to bridge the gap between academic knowledge and
                 practical workplace skills, particularly in quality, safety, and
                 business/project management.
@@ -251,7 +251,7 @@ const AboutUsPage = () => {
                 certification programs.
               </p>
               <p className="text-gray-700 mb-6">
-                Today, ICQA is recognized as a global leader committed to
+                Today, IQCA is recognized as a global leader committed to
                 educational excellence and professional development, with a 98%
                 success rate and a network of over 50 expert instructors
                 delivering value-adding practical education.
@@ -295,7 +295,7 @@ const AboutUsPage = () => {
             Our Leadership Team
           </h2>
           <p className="text-gray-700 text-center max-w-3xl mx-auto mb-12">
-            Meet the experts behind ICQA's success. Each leader brings years of
+            Meet the experts behind IQCA's success. Each leader brings years of
             industry experience and academic excellence to our professional
             training programs.
           </p>
@@ -315,7 +315,7 @@ const AboutUsPage = () => {
                 <p className="text-blue-600 mb-4">Founder & CEO</p>
                 <p className="text-gray-700 text-sm mb-4">
                   Over 25 years of experience in financial education and
-                  corporate training. James founded ICQA to bridge the gap
+                  corporate training. James founded IQCA to bridge the gap
                   between academic theory and workplace practice.
                 </p>
                 <div className="flex space-x-3">
@@ -495,7 +495,7 @@ const AboutUsPage = () => {
                 </div>
               </div>
               <p className="text-gray-700 mb-6 italic">
-                "The Practical Risk Management course at ICQA completely
+                "The Practical Risk Management course at IQCA completely
                 transformed my career trajectory. The instructors were
                 incredibly knowledgeable and willing to share their years of
                 experience. I received a senior position at a leading financial
@@ -564,7 +564,7 @@ const AboutUsPage = () => {
               </div>
               <p className="text-gray-700 mb-6 italic">
                 "As a seasoned IT Safety professional, I needed a certification
-                that would be recognized across industries. ICQA's program not
+                that would be recognized across industries. IQCA's program not
                 only provided me with the knowledge I needed, but opened doors
                 for leadership opportunities I never thought possible."
               </p>
@@ -601,8 +601,11 @@ const AboutUsPage = () => {
               </p>
 
               <div className="space-y-6">
-              <div className="flex items-start">
-                <MapPin className="mr-3 mt-1 flex-shrink-0 text-[#dbbd80]" size={20} />
+                <div className="flex items-start">
+                  <MapPin
+                    className="mr-3 mt-1 flex-shrink-0 text-[#dbbd80]"
+                    size={20}
+                  />
                   <div>
                     <h3 className="font-semibold mb-1">Visit Us</h3>
                     <p>123 Education Avenue</p>
@@ -611,16 +614,22 @@ const AboutUsPage = () => {
                   </div>
                 </div>
 
-              <div className="flex items-start">
-                <Phone className="mr-3 mt-1 flex-shrink-0 text-[#dbbd80]" size={20} />
+                <div className="flex items-start">
+                  <Phone
+                    className="mr-3 mt-1 flex-shrink-0 text-[#dbbd80]"
+                    size={20}
+                  />
                   <div>
                     <h3 className="font-semibold mb-1">Call Us</h3>
                     <p>+44 (0) 20 1234 5678</p>
                   </div>
                 </div>
 
-              <div className="flex items-start">
-                <Mail className="mr-3 mt-1 flex-shrink-0 text-[#dbbd80]" size={20} />
+                <div className="flex items-start">
+                  <Mail
+                    className="mr-3 mt-1 flex-shrink-0 text-[#dbbd80]"
+                    size={20}
+                  />
                   <div>
                     <h3 className="font-semibold mb-1">Email Us</h3>
                     <p>info@iqca-education.com</p>
