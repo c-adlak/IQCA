@@ -4,6 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import MeetingImg from "@/public/aboutPageImg/meetingImg.jpg";
 import Officeimg from "../../public/aboutPageImg/officeimg.jpg";
+import teamimg1 from "../../public/team/hina-gupta.jpeg";
+import teamimg2 from "../../public/team/david.jpeg";
 import {
   Clock,
   Facebook,
@@ -82,7 +84,7 @@ const AboutUsPage = () => {
   };
 
   const goToBoardMember = () => {
-    router.push("/board-members");
+    router.push("/about#team");
   };
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
@@ -291,7 +293,7 @@ const AboutUsPage = () => {
       </section>
 
       {/* Contact CTA */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white" id="team">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-blue-900 mb-4 text-center">
             Our Leadership Team
@@ -303,25 +305,23 @@ const AboutUsPage = () => {
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Dr. James Wilson */}
+            {/* hina Gupta*/}
             <div className="bg-gray-100 rounded-lg overflow-hidden">
-              <img
-                src="/api/placeholder/320/320"
-                alt="Dr. James Wilson"
-                className="w-full h-64 object-cover object-center"
+              <Image
+                src={teamimg1}
+                alt="Hina Gupta"
+                className="w-full h-64 object-contain object-center"
               />
               <div className="p-6">
                 <h3 className="text-blue-900 font-bold text-xl">
-                  Dr. James Wilson
+                  Hina Gupta
                 </h3>
-                <p className="text-blue-600 mb-4">Founder & CEO</p>
+                <p className="text-blue-600 mb-4"> Director and Chief Financial Officer</p>
                 <p className="text-gray-700 text-sm mb-4">
-                  Over 25 years of experience in financial education and
-                  corporate training. James founded IQCA to bridge the gap
-                  between academic theory and workplace practice.
+                  With over 14 years of experience in Accounting and Finance, Hina Gupta serves as Director and Chief Financial Officer of the IQCA Board. She brings extensive expertise across UK accounting, management accounts, audit, banking, and operations management, providing strategic financial leadership to ensure strong governance and sustainable growth at IQCA.
                 </p>
                 <div className="flex space-x-3">
-                  <a href="#" className="text-blue-900 hover:text-blue-700">
+                  <a href="https://www.linkedin.com/in/hina-gupta-aa056984?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" className="text-blue-900 hover:text-blue-700">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-5 w-5"
@@ -331,36 +331,25 @@ const AboutUsPage = () => {
                       <path d="M22.225 0h-20.45c-0.975 0-1.775 0.8-1.775 1.775v20.45c0 0.975 0.8 1.775 1.775 1.775h20.45c0.975 0 1.775-0.8 1.775-1.775v-20.45c0-0.975-0.8-1.775-1.775-1.775zM7.325 20.45h-3.55v-10.65h3.55v10.65zM5.55 8.3c-1.125 0-2.025-0.9-2.025-2.025s0.9-2.025 2.025-2.025 2.025 0.9 2.025 2.025-0.9 2.025-2.025 2.025zM20.45 20.45h-3.55v-5.175c0-1.325-0.025-3.025-1.85-3.025-1.85 0-2.125 1.425-2.125 2.9v5.3h-3.55v-10.65h3.4v1.55h0.050c0.475-0.9 1.625-1.85 3.35-1.85 3.575 0 4.25 2.35 4.25 5.425v5.525z" />
                     </svg>
                   </a>
-                  <a href="#" className="text-blue-900 hover:text-blue-700">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M23.998 4.926c-0.881 0.391-1.827 0.654-2.821 0.772 1.014-0.608 1.794-1.572 2.162-2.719-0.951 0.564-2.001 0.973-3.121 1.191-0.896-0.953-2.171-1.549-3.582-1.549-2.712 0-4.911 2.2-4.911 4.912 0 0.384 0.044 0.76 0.128 1.12-4.084-0.206-7.704-2.161-10.129-5.136-0.422 0.725-0.664 1.568-0.664 2.468 0 1.704 0.867 3.207 2.184 4.088-0.805-0.026-1.562-0.247-2.223-0.615v0.062c0 2.379 1.692 4.364 3.939 4.817-0.412 0.112-0.845 0.172-1.292 0.172-0.316 0-0.624-0.031-0.922-0.088 0.624 1.951 2.436 3.371 4.581 3.411-1.68 1.317-3.795 2.101-6.095 2.101-0.396 0-0.786-0.023-1.171-0.069 2.168 1.39 4.742 2.201 7.506 2.201 9.008 0 13.93-7.461 13.93-13.931 0-0.212-0.004-0.424-0.014-0.635 0.957-0.689 1.785-1.55 2.445-2.533z" />
-                    </svg>
-                  </a>
+
                 </div>
               </div>
             </div>
 
-            {/* Dr. Sarah Chen */}
+            {/*David */}
             <div className="bg-gray-100 rounded-lg overflow-hidden">
-              <img
-                src="/api/placeholder/320/320"
-                alt="Dr. Sarah Chen"
-                className="w-full h-64 object-cover object-center"
+              <Image
+                src={teamimg2}
+                alt="david"
+                className="w-full h-64 object-contain object-center"
               />
               <div className="p-6">
                 <h3 className="text-blue-900 font-bold text-xl">
-                  Dr. Sarah Chen
+                  David
                 </h3>
-                <p className="text-blue-600 mb-4">Academic Director</p>
+                <p className="text-blue-600 mb-4">Program Director</p>
                 <p className="text-gray-700 text-sm mb-4">
-                  Leads our curriculum development team, bringing her expertise
-                  in environmental science and sustainable business practices to
-                  our course offerings.
+                  David, Program Director at IQCA, brings over 18 years of experience in education and professional training. He leads the design and delivery of innovative programs that bridge global qualifications with practical workplace skills.
                 </p>
                 <div className="flex space-x-3">
                   <a href="#" className="text-blue-900 hover:text-blue-700">
@@ -371,16 +360,6 @@ const AboutUsPage = () => {
                       viewBox="0 0 24 24"
                     >
                       <path d="M22.225 0h-20.45c-0.975 0-1.775 0.8-1.775 1.775v20.45c0 0.975 0.8 1.775 1.775 1.775h20.45c0.975 0 1.775-0.8 1.775-1.775v-20.45c0-0.975-0.8-1.775-1.775-1.775zM7.325 20.45h-3.55v-10.65h3.55v10.65zM5.55 8.3c-1.125 0-2.025-0.9-2.025-2.025s0.9-2.025 2.025-2.025 2.025 0.9 2.025 2.025-0.9 2.025-2.025 2.025zM20.45 20.45h-3.55v-5.175c0-1.325-0.025-3.025-1.85-3.025-1.85 0-2.125 1.425-2.125 2.9v5.3h-3.55v-10.65h3.4v1.55h0.050c0.475-0.9 1.625-1.85 3.35-1.85 3.575 0 4.25 2.35 4.25 5.425v5.525z" />
-                    </svg>
-                  </a>
-                  <a href="#" className="text-blue-900 hover:text-blue-700">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M23.998 4.926c-0.881 0.391-1.827 0.654-2.821 0.772 1.014-0.608 1.794-1.572 2.162-2.719-0.951 0.564-2.001 0.973-3.121 1.191-0.896-0.953-2.171-1.549-3.582-1.549-2.712 0-4.911 2.2-4.911 4.912 0 0.384 0.044 0.76 0.128 1.12-4.084-0.206-7.704-2.161-10.129-5.136-0.422 0.725-0.664 1.568-0.664 2.468 0 1.704 0.867 3.207 2.184 4.088-0.805-0.026-1.562-0.247-2.223-0.615v0.062c0 2.379 1.692 4.364 3.939 4.817-0.412 0.112-0.845 0.172-1.292 0.172-0.316 0-0.624-0.031-0.922-0.088 0.624 1.951 2.436 3.371 4.581 3.411-1.68 1.317-3.795 2.101-6.095 2.101-0.396 0-0.786-0.023-1.171-0.069 2.168 1.39 4.742 2.201 7.506 2.201 9.008 0 13.93-7.461 13.93-13.931 0-0.212-0.004-0.424-0.014-0.635 0.957-0.689 1.785-1.55 2.445-2.533z" />
                     </svg>
                   </a>
                 </div>
@@ -413,16 +392,6 @@ const AboutUsPage = () => {
                       viewBox="0 0 24 24"
                     >
                       <path d="M22.225 0h-20.45c-0.975 0-1.775 0.8-1.775 1.775v20.45c0 0.975 0.8 1.775 1.775 1.775h20.45c0.975 0 1.775-0.8 1.775-1.775v-20.45c0-0.975-0.8-1.775-1.775-1.775zM7.325 20.45h-3.55v-10.65h3.55v10.65zM5.55 8.3c-1.125 0-2.025-0.9-2.025-2.025s0.9-2.025 2.025-2.025 2.025 0.9 2.025 2.025-0.9 2.025-2.025 2.025zM20.45 20.45h-3.55v-5.175c0-1.325-0.025-3.025-1.85-3.025-1.85 0-2.125 1.425-2.125 2.9v5.3h-3.55v-10.65h3.4v1.55h0.050c0.475-0.9 1.625-1.85 3.35-1.85 3.575 0 4.25 2.35 4.25 5.425v5.525z" />
-                    </svg>
-                  </a>
-                  <a href="#" className="text-blue-900 hover:text-blue-700">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M23.998 4.926c-0.881 0.391-1.827 0.654-2.821 0.772 1.014-0.608 1.794-1.572 2.162-2.719-0.951 0.564-2.001 0.973-3.121 1.191-0.896-0.953-2.171-1.549-3.582-1.549-2.712 0-4.911 2.2-4.911 4.912 0 0.384 0.044 0.76 0.128 1.12-4.084-0.206-7.704-2.161-10.129-5.136-0.422 0.725-0.664 1.568-0.664 2.468 0 1.704 0.867 3.207 2.184 4.088-0.805-0.026-1.562-0.247-2.223-0.615v0.062c0 2.379 1.692 4.364 3.939 4.817-0.412 0.112-0.845 0.172-1.292 0.172-0.316 0-0.624-0.031-0.922-0.088 0.624 1.951 2.436 3.371 4.581 3.411-1.68 1.317-3.795 2.101-6.095 2.101-0.396 0-0.786-0.023-1.171-0.069 2.168 1.39 4.742 2.201 7.506 2.201 9.008 0 13.93-7.461 13.93-13.931 0-0.212-0.004-0.424-0.014-0.635 0.957-0.689 1.785-1.55 2.445-2.533z" />
                     </svg>
                   </a>
                 </div>
