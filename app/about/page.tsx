@@ -383,7 +383,7 @@ const AboutUsPage = () => {
                 With a background in Business Administration and Human Resource Management, Likhitha Koppunur serves as Director and HR Business Partner (HRBP) of the IQCA Board. She brings expertise in talent acquisition, corporate training, and international education, ensuring that IQCA’s people strategy aligns with its mission. Passionate about bridging academic learning with workplace practice, she plays a key role in driving IQCA’s vision of delivering globally recognised qualifications and certifications.
                 </p>
                 <div className="flex space-x-3">
-                  <a href="#" className="text-blue-900 hover:text-blue-700">
+                  <a href="https://www.linkedin.com/in/likhitha-koppunur-b8635119a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" className="text-blue-900 hover:text-blue-700">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-5 w-5"
