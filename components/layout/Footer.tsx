@@ -125,7 +125,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <Link
-                  href="#"
+                  href="/courses"
                   className="text-gray-400 hover:text-white transition-colors duration-300 quick-link inline-block"
                 >
                   Finance
@@ -133,7 +133,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/courses"
                   className="text-gray-400 hover:text-white transition-colors duration-300 quick-link inline-block"
                 >
                   Health & Safety
@@ -141,7 +141,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/courses"
                   className="text-gray-400 hover:text-white transition-colors duration-300 quick-link inline-block"
                 >
                   Environmental Safety
@@ -149,7 +149,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/courses"
                   className="text-gray-400 hover:text-white transition-colors duration-300 quick-link inline-block"
                 >
                   Corporate Training
@@ -157,7 +157,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/courses"
                   className="text-gray-400 hover:text-white transition-colors duration-300 quick-link inline-block"
                 >
                   Certification Programs

@@ -6,6 +6,7 @@ import MeetingImg from "@/public/aboutPageImg/meetingImg.jpg";
 import Officeimg from "../../public/aboutPageImg/officeimg.jpg";
 import teamimg1 from "../../public/team/hina-gupta.jpeg";
 import teamimg2 from "../../public/team/david.jpeg";
+import teamimg3 from "../../public/team/aaa.jpeg";
 import {
   Clock,
   Facebook,
@@ -368,20 +369,18 @@ const AboutUsPage = () => {
 
             {/* Robert Martinez */}
             <div className="bg-gray-100 rounded-lg overflow-hidden">
-              <img
-                src="/api/placeholder/320/320"
-                alt="Robert Martinez"
-                className="w-full h-64 object-cover object-center"
+              <Image
+                src={teamimg3}
+                alt="Likhitha Koppunur"
+                className="w-full h-64 object-contain object-center"
               />
               <div className="p-6">
                 <h3 className="text-blue-900 font-bold text-xl">
-                  Robert Martinez
+                Likhitha Koppunur
                 </h3>
-                <p className="text-blue-600 mb-4">Head of Industry Relations</p>
+                <p className="text-blue-600 mb-4">Director and HR Business Partner (HRBP)</p>
                 <p className="text-gray-700 text-sm mb-4">
-                  Maintains strong connections with industry partners, ensuring
-                  our courses remain aligned with current workplace and
-                  technology trends.
+                With a background in Business Administration and Human Resource Management, Likhitha Koppunur serves as Director and HR Business Partner (HRBP) of the IQCA Board. She brings expertise in talent acquisition, corporate training, and international education, ensuring that IQCA’s people strategy aligns with its mission. Passionate about bridging academic learning with workplace practice, she plays a key role in driving IQCA’s vision of delivering globally recognised qualifications and certifications.
                 </p>
                 <div className="flex space-x-3">
                   <a href="#" className="text-blue-900 hover:text-blue-700">
