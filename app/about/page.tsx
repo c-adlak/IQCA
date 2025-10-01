@@ -345,7 +345,7 @@ const AboutUsPage = () => {
               />
               <div className="p-6">
                 <h3 className="text-blue-900 font-bold text-xl">
-                  David
+                David Morchiladze
                 </h3>
                 <p className="text-blue-600 mb-4">Program Director</p>
                 <p className="text-gray-700 text-sm mb-4">
