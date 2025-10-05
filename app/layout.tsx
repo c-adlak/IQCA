@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import AosProvider from "@/components/providers/AosProvider";
 import { Toaster } from "react-hot-toast";
 import Chatbot from "@/components/layout/chatbot";
+import WhatsAppButton from "@/components/WhatsappButton";
 import { AuthProvider } from "../hooks/useAuth";
 
 const poppins = Poppins({
@@ -39,6 +40,7 @@ export default function RootLayout({
             <Header />
             <main>
               {children}
+              <WhatsAppButton />
               <Chatbot />
               <Toaster position="top-right" />
             </main>
